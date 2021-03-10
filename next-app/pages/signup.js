@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Router from "next/router";
 import cookie from "js-cookie";
 
+// This will be the admin page, and  will not have a visible anchor ; will access via /admin ; here we will create new users to add to the DB
+
 const Signup = () => {
   const [signupError, setSignupError] = useState("");
   const [email, setEmail] = useState("");
@@ -22,6 +24,7 @@ const Signup = () => {
     })
       .then((r) => r.json())
       .then((data) => {
+        console.log("signup" + data);
         if (data && data.error) {
           setSignupError(data.message);
         }
