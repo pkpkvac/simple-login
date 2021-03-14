@@ -16,7 +16,9 @@
     "next": "10.0.8",
     "react": "17.0.1",
     "react-dom": "17.0.1",
+    "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
+    "react-select": "^4.2.1",
     "swr": "^0.5.0",
     "uuid": "^8.3.2"
   }
