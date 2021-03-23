@@ -36,17 +36,6 @@ class Prompt extends Component {
           onChange={this.handleChange}
           options={options}
         />
-
-        {/* This modal component needs to be seperated, and should not be here */}
-        <div>
-          {/* <h3>React Modal</h3> */}
-          {/* <Modal show={this.state.show} handleClose={this.hideModal}>
-            <p>Modal</p>
-          </Modal> */}
-          <button type="button" onClick={this.showModal}>
-            Open
-          </button>
-        </div>
       </div>
     );
   }
