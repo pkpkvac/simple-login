@@ -16,6 +16,8 @@ const options = [
   { value: "memory6", label: "Memory6" },
 ];
 
+export let selectedOption;
+
 class Prompt extends Component {
   state = {
     selectedOption: null,
@@ -27,7 +29,7 @@ class Prompt extends Component {
 
   render() {
     const { selectedOption } = this.state;
-
+    console.log(selectedOption);
     return (
       <div className="Prompt">
         <h3>Share a memory</h3>

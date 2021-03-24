@@ -6,11 +6,12 @@ import cookie from "js-cookie";
 import { Redirect } from "react-router-dom";
 import "../pages/_app";
 import EmbeddedVideo from "../components/EmbeddedVideo";
-import Prompt from "../components/Prompts";
+import Prompt, { selectedOption } from "../components/Prompts";
 import Modal from "../components/Modal";
 import useModal from "./useModal";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
+import Upload from "../components/Upload";
 
 // function Welcome(props) {
 //   return <h1>Hello, {props.name}</h1>;
@@ -18,6 +19,8 @@ import Button from "@material-ui/core/Button";
 
 function Home() {
   const { isShowing, toggle } = useModal();
+
+  // console.log(Prompt);
 
   const { data, revalidate } = useSWR("/api/me", async function (args) {
     const res = await fetch(args);
@@ -28,6 +31,7 @@ function Home() {
   if (data.email) {
     loggedIn = true;
   }
+  // console.log(Prompt.value);
   return (
     <div>
       <Head>
@@ -44,10 +48,6 @@ function Home() {
           </div>
 
           <div>
-            <Prompt />
-          </div>
-
-          <div>
             <Button
               onClick={() => {
                 cookie.remove("token");
@@ -60,12 +60,18 @@ function Home() {
             </Button>
           </div>
 
-          <div className="Home">
+          <div>
+            <Prompt />
+          </div>
+
+          <Upload />
+
+          {/* <div className="Home">
             <button className="button-default" onClick={toggle}>
               Select
             </button>
             <Modal isShowing={isShowing} hide={toggle} />
-          </div>
+          </div> */}
         </>
       )}
       {!loggedIn && (
