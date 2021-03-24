@@ -79,6 +79,7 @@ class Upload extends Component {
       <div className="Upload">
         <center>
           <h1>UPLOAD A FILE</h1>
+          {JSON.stringify(this.props.prompt)}
           {this.state.success ? <SuccessMessage /> : null}
           {this.state.error ? <ErrorMessage /> : null}
           <input

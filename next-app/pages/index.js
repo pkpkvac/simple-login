@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import useSWR from "swr";
@@ -19,8 +20,7 @@ import Upload from "../components/Upload";
 
 function Home() {
   const { isShowing, toggle } = useModal();
-
-  // console.log(Prompt);
+  const [prompt, setPrompt] = useState("test");
 
   const { data, revalidate } = useSWR("/api/me", async function (args) {
     const res = await fetch(args);
@@ -60,11 +60,12 @@ function Home() {
             </Button>
           </div>
 
+          {JSON.stringify(prompt)}
           <div>
-            <Prompt />
+            <Prompt setPrompt={setPrompt} />
           </div>
 
-          <Upload />
+          <Upload prompt={prompt} />
 
           {/* <div className="Home">
             <button className="button-default" onClick={toggle}>

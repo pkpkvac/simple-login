@@ -1,5 +1,6 @@
 // App.js
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
+
 //import './App.css';
 import Select from "react-select";
 // import Modal from "./Modal.js";
@@ -16,31 +17,49 @@ const options = [
   { value: "memory6", label: "Memory6" },
 ];
 
-export let selectedOption;
+const Prompt = ({ setPrompt }) => {
+  const [selectedOption, setSelectedOption] = useState(null);
 
-class Prompt extends Component {
-  state = {
-    selectedOption: null,
-  };
-  handleChange = (selectedOption) => {
-    this.setState({ selectedOption });
+  const handleChange = (selectedOption) => {
+    setSelectedOption(selectedOption);
+    setPrompt(selectedOption);
     console.log(`Option selected:`, selectedOption);
   };
 
-  render() {
-    const { selectedOption } = this.state;
-    console.log(selectedOption);
-    return (
-      <div className="Prompt">
-        <h3>Share a memory</h3>
-        <Select
-          value={selectedOption}
-          onChange={this.handleChange}
-          options={options}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className="Prompt">
+      <h3>Share a memory</h3>
+      <Select
+        value={selectedOption}
+        onChange={handleChange}
+        options={options}
+      />
+    </div>
+  );
+};
+// class Prompt extends Component {
+//   state = {
+//     selectedOption: null,
+//   };
+//   handleChange = (selectedOption) => {
+//     this.setState({ selectedOption });
+//     console.log(`Option selected:`, selectedOption);
+//   };
+
+//   render() {
+//     const { selectedOption } = this.state;
+//     console.log(selectedOption);
+//     return (
+//       <div className="Prompt">
+//         <h3>Share a memory</h3>
+//         <Select
+//           value={selectedOption}
+//           onChange={this.handleChange}
+//           options={options}
+//         />
+//       </div>
+//     );
+//   }
+// }
 
 export default Prompt;
