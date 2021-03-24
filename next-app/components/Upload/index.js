@@ -1,25 +1,22 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import axios from "axios";
 
-class Upload extends Component {
+const Upload = (props) => {
   // change to function component
-  constructor(props) {
-    super(props);
-    this.state = {
-      success: false,
-      url: "",
-      error: false,
-      errorMessage: "",
-    };
-  }
+  let uploadInput;
+  const [success, setSuccess] = useState(false);
+  const [url, setUrl] = useState(null);
+  const [error, setError] = useState(false);
+  const [errorMessage, seterrorMessage] = useState(null);
 
-  handleChange = (ev) => {
-    this.setState({ success: false, url: "" });
+  const handleChange = (ev) => {
+    setSuccess(false);
+    setUrl("");
   };
-  handleUpload = (ev) => {
-    let file = this.uploadInput.files[0];
+  const handleUpload = (ev) => {
+    let file = uploadInput.files[0];
     // Split the filename to get the name and type
-    let fileParts = this.uploadInput.files[0].name.split(".");
+    let fileParts = uploadInput.files[0].name.split(".");
     let fileName = fileParts[0];
     let fileType = fileParts[1];
     console.log("Preparing the upload");
@@ -36,7 +33,7 @@ class Upload extends Component {
         var returnData = response.data.data.returnData;
         var signedRequest = returnData.signedRequest;
         var url = returnData.url;
-        this.setState({ url: url });
+        setUrl(url);
         console.log("Recieved a signed request " + signedRequest);
 
         var options = {
@@ -48,7 +45,7 @@ class Upload extends Component {
           .put(signedRequest, file, options)
           .then((result) => {
             console.log("Response from s3");
-            this.setState({ success: true });
+            setSuccess(true);
           })
           .catch((error) => {
             alert("ERROR " + JSON.stringify(error));
@@ -59,42 +56,144 @@ class Upload extends Component {
       });
   };
 
-  render() {
-    const SuccessMessage = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-        <a href={this.state.url}>Access the file here</a>
+  const SuccessMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+      <a href={url}>Access the file here</a>
+      <br />
+    </div>
+  );
+  const ErrorMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+      <span>{errorMessage}</span>
+      <br />
+    </div>
+  );
+  return (
+    <div className="Upload">
+      <center>
+        <h1>Upload a file</h1>
+
+        <div>{JSON.stringify(props.prompt.label)}</div>
+
+        <div>{success ? <SuccessMessage /> : null}</div>
+
+        <div>{error ? <ErrorMessage /> : null}</div>
+
+        <input
+          onChange={handleChange}
+          ref={(ref) => {
+            uploadInput = ref;
+          }}
+          type="file"
+        />
         <br />
-      </div>
-    );
-    const ErrorMessage = () => (
-      <div style={{ padding: 50 }}>
-        <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
-        <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
-        <span>{this.state.errorMessage}</span>
-        <br />
-      </div>
-    );
-    return (
-      <div className="Upload">
-        <center>
-          <h1>UPLOAD A FILE</h1>
-          {JSON.stringify(this.props.prompt)}
-          {this.state.success ? <SuccessMessage /> : null}
-          {this.state.error ? <ErrorMessage /> : null}
-          <input
-            onChange={this.handleChange}
-            ref={(ref) => {
-              this.uploadInput = ref;
-            }}
-            type="file"
-          />
-          <br />
-          <button onClick={this.handleUpload}>UPLOAD</button>
-        </center>
-      </div>
-    );
-  }
-}
+        <button onClick={handleUpload}>UPLOAD</button>
+      </center>
+    </div>
+  );
+};
+
+// class Upload extends Component {
+//   // change to function component
+//   constructor(props) {
+//     super(props);
+//     this.state = {
+//       success: false,
+//       url: "",
+//       error: false,
+//       errorMessage: "",
+//     };
+//   }
+
+//   handleChange = (ev) => {
+//     this.setState({ success: false, url: "" });
+//   };
+//   handleUpload = (ev) => {
+//     let file = this.uploadInput.files[0];
+//     // Split the filename to get the name and type
+//     let fileParts = this.uploadInput.files[0].name.split(".");
+//     let fileName = fileParts[0];
+//     let fileType = fileParts[1];
+//     console.log("Preparing the upload");
+
+//     // *** will need to add a promise here for SendGrid API as well, also, change code to use fetch instead of axios
+
+//     axios
+//       .post("http://localhost:3001/sign_s3", {
+//         fileName: fileName,
+//         fileType: fileType,
+//         //weddingID (to generate s3 folder in the bucket)
+//       })
+//       .then((response) => {
+//         var returnData = response.data.data.returnData;
+//         var signedRequest = returnData.signedRequest;
+//         var url = returnData.url;
+//         this.setState({ url: url });
+//         console.log("Recieved a signed request " + signedRequest);
+
+//         var options = {
+//           headers: {
+//             "Content-Type": fileType,
+//           },
+//         };
+//         axios
+//           .put(signedRequest, file, options)
+//           .then((result) => {
+//             console.log("Response from s3");
+//             this.setState({ success: true });
+//           })
+//           .catch((error) => {
+//             alert("ERROR " + JSON.stringify(error));
+//           });
+//       })
+//       .catch((error) => {
+//         alert(JSON.stringify(error));
+//       });
+//   };
+
+//   render() {
+//     const SuccessMessage = () => (
+//       <div style={{ padding: 50 }}>
+//         <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+//         <a href={this.state.url}>Access the file here</a>
+//         <br />
+//       </div>
+//     );
+//     const ErrorMessage = () => (
+//       <div style={{ padding: 50 }}>
+//         <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+//         <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+//         <span>{this.state.errorMessage}</span>
+//         <br />
+//       </div>
+//     );
+//     return (
+//       <div className="Upload">
+//         <center>
+//           <h1>Upload a file</h1>
+
+//           <div>{JSON.stringify(this.props.prompt.label)}</div>
+
+//           <div>{this.state.success ? <SuccessMessage /> : null}</div>
+
+//           <div>{this.state.error ? <ErrorMessage /> : null}</div>
+
+//           <input
+//             onChange={this.handleChange}
+//             ref={(ref) => {
+//               this.uploadInput = ref;
+//             }}
+//             type="file"
+//           />
+//           <br />
+//           <button onClick={this.handleUpload}>UPLOAD</button>
+//         </center>
+//       </div>
+//     );
+//   }
+// }
 
 export default Upload;

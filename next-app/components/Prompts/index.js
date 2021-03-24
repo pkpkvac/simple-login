@@ -9,12 +9,12 @@ import Select from "react-select";
 
 // will need a file to generate these options
 const options = [
-  { value: "memory1", label: "Memory1" },
-  { value: "memory2", label: "Memory2" },
-  { value: "memory3", label: "Memory3" },
-  { value: "memory4", label: "Memory4" },
-  { value: "memory5", label: "Memory5" },
-  { value: "memory6", label: "Memory6" },
+  { value: "memory4", label: "Funny memory" },
+  { value: "memory2", label: "We went" },
+  { value: "memory1", label: "That time" },
+  { value: "memory3", label: "Some place" },
+  { value: "memory5", label: "Whatever" },
+  { value: "memory6", label: "Something" },
 ];
 
 const Prompt = ({ setPrompt }) => {
@@ -28,12 +28,14 @@ const Prompt = ({ setPrompt }) => {
 
   return (
     <div className="Prompt">
-      <h3>Share a memory</h3>
-      <Select
-        value={selectedOption}
-        onChange={handleChange}
-        options={options}
-      />
+      <center>
+        <h3>Share a memory</h3>
+        <Select
+          value={selectedOption}
+          onChange={handleChange}
+          options={options}
+        />
+      </center>
     </div>
   );
 };

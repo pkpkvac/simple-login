@@ -14,10 +14,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import Upload from "../components/Upload";
 
-// function Welcome(props) {
-//   return <h1>Hello, {props.name}</h1>;
-// }
-
 function Home() {
   const { isShowing, toggle } = useModal();
   const [prompt, setPrompt] = useState("test");
@@ -31,21 +27,34 @@ function Home() {
   if (data.email) {
     loggedIn = true;
   }
-  // console.log(Prompt.value);
+
   return (
     <div>
-      <Head>
-        <title>Story Tree</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      </Head>
-      <h1>Story Tree</h1>
+      <center>
+        <Head>
+          <title>Story Tree</title>
 
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+          />
+        </Head>
+        <h1>Story Tree</h1>
+      </center>
       <h2></h2>
       {loggedIn && (
         <>
-          <div>
+          {/* <div>
             <TextField id="outlined-basic" label="Name" variant="outlined" />
+          </div> */}
+
+          <div>
+            <Prompt setPrompt={setPrompt} />
           </div>
+
+          {/* <div>{JSON.stringify(prompt.label)}</div> */}
+
+          <Upload prompt={prompt} />
 
           <div>
             <Button
@@ -59,14 +68,6 @@ function Home() {
               Logout
             </Button>
           </div>
-
-          {JSON.stringify(prompt)}
-          <div>
-            <Prompt setPrompt={setPrompt} />
-          </div>
-
-          <Upload prompt={prompt} />
-
           {/* <div className="Home">
             <button className="button-default" onClick={toggle}>
               Select
