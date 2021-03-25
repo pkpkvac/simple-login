@@ -1,5 +1,14 @@
 import React, { Component, useState } from "react";
 import axios from "axios";
+import Button from "@material-ui/core/Button";
+import { makeStyles } from "@material-ui/core/styles";
+import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+
+const useStyles = makeStyles((theme) => ({
+  button: {
+    margin: theme.spacing(1),
+  },
+}));
 
 const Upload = (props) => {
   // change to function component
@@ -8,11 +17,16 @@ const Upload = (props) => {
   const [url, setUrl] = useState(null);
   const [error, setError] = useState(false);
   const [errorMessage, seterrorMessage] = useState(null);
+  const [fileSelected, setfileSelected] = useState(false);
 
   const handleChange = (ev) => {
     setSuccess(false);
     setUrl("");
+    setfileSelected(true);
   };
+
+  console.log(props.prompt);
+
   const handleUpload = (ev) => {
     let file = uploadInput.files[0];
     // Split the filename to get the name and type
@@ -59,7 +73,7 @@ const Upload = (props) => {
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
       <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-      <a href={url}>Access the file here</a>
+      {/* <a href={url}>Access the file here</a> */}
       <br />
     </div>
   );
@@ -71,6 +85,8 @@ const Upload = (props) => {
       <br />
     </div>
   );
+  const classes = useStyles();
+
   return (
     <div className="Upload">
       <center>
@@ -88,9 +104,35 @@ const Upload = (props) => {
             uploadInput = ref;
           }}
           type="file"
+          style={{ display: props.prompt.label ? "inline" : "none" }}
         />
+
+        {/* <input
+          color="primary"
+          accept="image/*"
+          type="file"
+          onChange={handleChange}
+          id="icon-button-file"
+          style={{ display: "none" }}
+        /> */}
         <br />
-        <button onClick={handleUpload}>UPLOAD</button>
+        {/* <button onClick={handleUpload}>UPLOAD</button> */}
+
+        <Button
+          onClick={handleUpload}
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          startIcon={<CloudUploadIcon />}
+          style={{
+            display:
+              props.prompt.label !== undefined && fileSelected
+                ? "inline"
+                : "none",
+          }}
+        >
+          Upload
+        </Button>
       </center>
     </div>
   );

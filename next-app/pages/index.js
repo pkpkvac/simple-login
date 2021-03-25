@@ -63,7 +63,7 @@ function Home() {
                 revalidate();
               }}
               variant="contained"
-              color="primary"
+              color="secondary"
             >
               Logout
             </Button>
@@ -86,13 +86,13 @@ function Home() {
               </Button>
             </Link>
           </div>
-          <div>
+          {/* <div>
             <Link href="/signup">
               <Button variant="contained" color="primary">
                 Signup
               </Button>
             </Link>
-          </div>
+          </div> */}
         </>
       )}
 

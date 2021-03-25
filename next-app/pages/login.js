@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Router from "next/router";
 import cookie from "js-cookie";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -35,23 +37,72 @@ const Login = () => {
       });
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <p>Login</p>
-      <input
-        name="email"
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        name="password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <input type="submit" value="Submit" />
-      {loginError && <p style={{ color: "red" }}>{loginError}</p>}
-    </form>
+    <center>
+      <form onSubmit={handleSubmit}>
+        {/* <p>Login</p> */}
+        <div>
+          <TextField
+            id="outlined-basic"
+            label="email"
+            variant="outlined"
+            name="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <TextField
+            id="outlined-basic"
+            label="password"
+            variant="outlined"
+            name="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        {/* <input
+          name="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        /> */}
+
+        {/* <Button
+          onClick={handleUpload}
+          variant="contained"
+          color="secondary"
+          className={classes.button}
+          
+          style={{
+            display:
+              props.prompt.label !== undefined && fileSelected
+                ? "inline"
+                : "none",
+          }}
+        >
+          Upload
+        </Button> */}
+
+        <Button
+          onClick={handleSubmit}
+          type="submit"
+          value="Submit"
+          variant="contained"
+          color="secondary"
+        >
+          Login
+        </Button>
+        {/* <input type="submit" value="Submit" /> */}
+        {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+      </form>
+    </center>
   );
 };
 
