@@ -9,17 +9,25 @@ import Select from "react-select";
 
 // will need a file to generate these options
 const options = [
-  { value: "memory4", label: "Funny memory" },
-  { value: "memory2", label: "We went" },
-  { value: "memory1", label: "That time" },
-  { value: "memory3", label: "Some place" },
-  { value: "memory5", label: "Whatever" },
-  { value: "memory6", label: "Something" },
+  {
+    value: "memory4",
+    label: "I shouldn't tell this story at a wedding, but ...",
+  },
+  {
+    value: "memory2",
+    label: "Most embarassing story of the groom/bride I know",
+  },
+  {
+    value: "memory1",
+    label: "The naughtiest thing I've seen the groom/bride do",
+  },
+  { value: "memory3", label: "Funniest travel story" },
+  { value: "memory6", label: "That time we got drunk ..." },
 ];
 
 const Prompt = ({ setPrompt }) => {
   const [selectedOption, setSelectedOption] = useState(null);
-
+  
   const handleChange = (selectedOption) => {
     setSelectedOption(selectedOption);
     setPrompt(selectedOption);

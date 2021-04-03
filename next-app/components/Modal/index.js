@@ -30,39 +30,8 @@ const Modal = ({ isShowing, hide }) =>
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <p>Hello, I'm a modal.</p>
+              <p> Thank you </p>
               {/* https://www.geeksforgeeks.org/how-to-create-a-upload-file-button-in-reactjs/ */}
-              <input type="file" accept="image/*" style={{ display: "none" }} />
-              <label htmlFor="contained-button-file">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <VideocamIcon fontSize="large" />
-                </IconButton>
-              </label>
-              <input type="file" accept="image/*" style={{ display: "none" }} />
-
-              <input
-                accept="image/*"
-                id="icon-button-file"
-                type="file"
-                style={{ display: "none" }}
-              />
-              <label htmlFor="icon-button-file">
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <PublishIcon />
-                </IconButton>
-              </label>
-              <Button variant="contained" color="primary" component="span">
-                Save
-              </Button>
-              <Upload></Upload>
             </div>
           </div>
         </React.Fragment>,

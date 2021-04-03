@@ -1,203 +1,1301 @@
-body {
-  font-family: "SF Pro Text", "SF Pro Icons", system-ui, "Helvetica Neue",
-    "Helvetica";
-  font-size: 1rem;
-  padding: 20px 20px 60px;
-  max-width: 550px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  background-color: #fff;
+  color: #555;
+  font-family: "Lato", "Arial", sans-serif;
+  font-size: 20px;
+  font-weight: 300;
+  text-rendering: optimizeLegibility;
+}
+
+/******************************************************** */
+/* Reusable components */
+/* ******************************************************** */
+
+section {
+  padding: 80px 0;
+}
+
+.row {
+  max-width: 1140px;
+  /* max width will only ever have an absolute value, it's the full width, everything else should be a %ge */
   margin: 0 auto;
+  /* t & b = 0, l & r = auto */
 }
 
-form label {
-  display: flex;
-  justify-content: space-between;
-  max-width: 220px;
+.box {
+  padding: 1%;
 }
 
-.Home {
+/* -------------------- Headings -------------------- */
+
+h1,
+h2,
+h3 {
+  /* need to do this to remove the margin at the top of the header*/
+
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+h1 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  color: #fff;
+  /* this font size is relative to the html font-size variable, i.e, 40px */
+  font-size: 240%;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 160%;
+  word-spacing: 2px;
   text-align: center;
-  padding-top: 2rem;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
 }
 
-.modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1040;
-  width: 100vw;
-  height: 100vh;
-  background-color: #000;
-  opacity: 0.5;
+h3 {
+  font-size: 110%;
+  margin-bottom: 15px;
 }
 
-.modal-wrapper {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 1050;
-  width: 100%;
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
-  outline: 0;
+h2:after {
+  display: block;
+  height: 2px;
+  background-color: #24a058;
+  /* need to specify content for 'after' */
+  content: " ";
+  width: 100px;
+  /* center it */
+  margin: 0 auto;
+  margin-top: 30px;
 }
 
-.modal {
-  z-index: 100;
-  background: white;
-  position: relative;
-  margin: 1.75rem auto;
-  border-radius: 3px;
-  max-width: 500px;
-  padding: 2rem;
+/* -------------------- Paragraphs -------------------- */
+
+.long-copy {
+  line-height: 145%;
+  width: 70%;
+  margin-left: 15%;
 }
 
-.modal-header {
-  display: flex;
-  justify-content: flex-end;
+.box p {
+  /* all the paragraps inside the box */
+  font-size: 90%;
+  line-height: 145%;
 }
 
-.modal-close-button {
-  font-size: 1.4rem;
-  font-weight: 700;
-  line-height: 1;
-  color: #000;
-  opacity: 0.3;
-  cursor: pointer;
-  border: none;
+/* -------------------- Buttons -------------------- */
+
+/* common to both buttons */
+.btn:link,
+.btn:visited {
+  display: inline-block;
+  padding: 10px 30px;
+  /* 10 px top bottom, 30 left right */
+  font-weight: 300;
+  text-decoration: none;
+  /* to get a rounded edge on the button use this border radius trick */
+  border-radius: 200px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
 }
 
-button {
-  font-size: 0.9rem;
-  font-weight: 700;
-  border: none;
-  border-radius: 3px;
-  padding: 0.3rem 1rem;
-  margin-left: 0.5rem;
+/* specific to this button */
+.btn-full:link,
+.btn-full:visited {
+  background-color: #27ae60;
+  border: 1px solid #27ae60;
+  color: #fff;
+  margin-right: 15px;
 }
 
-.button-default {
-  background: #247ba0;
+.btn-ghost:link,
+.btn-ghost:visited {
+  border: 1px solid #27ae60;
+  color: #27ae60;
+}
+
+.btn:hover,
+.btn:active {
+  background-color: #219251;
+}
+
+.btn-full:hover,
+.btn-full:active {
+  border: 1px solid #219251;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+  border: 1px solid #219251;
   color: #fff;
 }
-.container {
-  min-height: 100vh;
-  padding: 0 0.5rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
+.lightbulb {
+  height: 200px;
+  width: auto;
+  /* display: none; */
 }
 
-.main {
-  padding: 5rem 0;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.main-nav {
+  float: right;
+  list-style: none;
+  margin-top: 50px;
 }
 
-.footer {
-  width: 100%;
-  height: 100px;
-  border-top: 1px solid #eaeaea;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.main-nav li {
+  display: inline-block;
+  margin-left: 40px;
 }
 
-.footer img {
-  margin-left: 0.5rem;
-}
-
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.title a {
-  color: #0070f3;
+/* select a items inside li */
+.main-nav li a:link,
+.main-nav li a:visited {
+  padding: 8px 0;
+  color: #fff;
   text-decoration: none;
+  text-transform: uppercase;
+  font-size: 90%;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.2s;
 }
 
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
+.main-nav li a:hover,
+.main-nav li a:active {
+  border-bottom: 2px solid #27ae60;
 }
 
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
+.hero-text-box {
+  position: absolute;
+  width: 1140px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
-.title,
-.description {
-  text-align: center;
-}
+/* ******************************************************** */
+/* HEADER */
+/* ******************************************************** */
 
-.description {
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-  margin-top: 3rem;
-}
-
-.card {
-  margin: 1rem;
-  flex-basis: 45%;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h3 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
+header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+    url(/images/friends.jpeg);
+  height: 100vh;
+  /* 100% of viewport */
+  background-size: cover;
+  background-position: center;
 }
 
 .logo {
-  height: 1em;
+  height: 100px;
+  width: auto;
+  float: left;
+  margin-top: 20px;
 }
 
-@media (max-width: 600px) {
-  .grid {
+/* -------------------- VIDEO BOX -------------------- */
+
+.film__container {
+  width: 100%;
+  /* TODO: massive bug here with the height, fix that, change it to 90 and see what happens */
+  height: 75vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.film__box {
+  height: 500px;
+  width: 100%;
+  max-width: 800px;
+  margin: 25% 25% 25% 25%;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%;
+}
+
+.react-player {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.react-player video {
+  position: relative;
+  left: 0;
+  top: 0;
+  transform: none;
+}
+/* 
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+Normalize
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+*/
+
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
+/* Document
+   ========================================================================== */
+
+/**
+ * 1. Correct the line height in all browsers.
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+  line-height: 1.15; /* 1 */
+  -webkit-text-size-adjust: 100%; /* 2 */
+}
+
+/* Sections
+   ========================================================================== */
+
+/**
+ * Remove the margin in all browsers.
+ */
+
+body {
+  margin: 0;
+}
+
+/**
+ * Render the `main` element consistently in IE.
+ */
+
+main {
+  display: block;
+}
+
+/**
+ * Correct the font size and margin on `h1` elements within `section` and
+ * `article` contexts in Chrome, Firefox, and Safari.
+ */
+
+h1 {
+  font-size: 2em;
+  margin: 0.67em 0;
+}
+
+/* Grouping content
+   ========================================================================== */
+
+/**
+ * 1. Add the correct box sizing in Firefox.
+ * 2. Show the overflow in Edge and IE.
+ */
+
+hr {
+  box-sizing: content-box; /* 1 */
+  height: 0; /* 1 */
+  overflow: visible; /* 2 */
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+pre {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/* Text-level semantics
+   ========================================================================== */
+
+/**
+ * Remove the gray background on active links in IE 10.
+ */
+
+a {
+  background-color: transparent;
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57-
+ * 2. Add the correct text decoration in Chrome, Edge, IE, Opera, and Safari.
+ */
+
+abbr[title] {
+  border-bottom: none; /* 1 */
+  text-decoration: underline; /* 2 */
+  text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Add the correct font weight in Chrome, Edge, and Safari.
+ */
+
+b,
+strong {
+  font-weight: bolder;
+}
+
+/**
+ * 1. Correct the inheritance and scaling of font size in all browsers.
+ * 2. Correct the odd `em` font sizing in all browsers.
+ */
+
+code,
+kbd,
+samp {
+  font-family: monospace, monospace; /* 1 */
+  font-size: 1em; /* 2 */
+}
+
+/**
+ * Add the correct font size in all browsers.
+ */
+
+small {
+  font-size: 80%;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in
+ * all browsers.
+ */
+
+sub,
+sup {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
+sup {
+  top: -0.5em;
+}
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Remove the border on images inside links in IE 10.
+ */
+
+img {
+  border-style: none;
+}
+
+/* Forms
+   ========================================================================== */
+
+/**
+ * 1. Change the font styles in all browsers.
+ * 2. Remove the margin in Firefox and Safari.
+ */
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit; /* 1 */
+  font-size: 100%; /* 1 */
+  line-height: 1.15; /* 1 */
+  margin: 0; /* 2 */
+}
+
+/**
+ * Show the overflow in IE.
+ * 1. Show the overflow in Edge.
+ */
+
+button,
+input {
+  /* 1 */
+  overflow: visible;
+}
+
+/**
+ * Remove the inheritance of text transform in Edge, Firefox, and IE.
+ * 1. Remove the inheritance of text transform in Firefox.
+ */
+
+button,
+select {
+  /* 1 */
+  text-transform: none;
+}
+
+/**
+ * Correct the inability to style clickable types in iOS and Safari.
+ */
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button;
+}
+
+/**
+ * Remove the inner border and padding in Firefox.
+ */
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+  border-style: none;
+  padding: 0;
+}
+
+/**
+ * Restore the focus styles unset by the previous rule.
+ */
+
+button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+  outline: 1px dotted ButtonText;
+}
+
+/**
+ * Correct the padding in Firefox.
+ */
+
+fieldset {
+  padding: 0.35em 0.75em 0.625em;
+}
+
+/**
+ * 1. Correct the text wrapping in Edge and IE.
+ * 2. Correct the color inheritance from `fieldset` elements in IE.
+ * 3. Remove the padding so developers are not caught out when they zero out
+ *    `fieldset` elements in all browsers.
+ */
+
+legend {
+  box-sizing: border-box; /* 1 */
+  color: inherit; /* 2 */
+  display: table; /* 1 */
+  max-width: 100%; /* 1 */
+  padding: 0; /* 3 */
+  white-space: normal; /* 1 */
+}
+
+/**
+ * Add the correct vertical alignment in Chrome, Firefox, and Opera.
+ */
+
+progress {
+  vertical-align: baseline;
+}
+
+/**
+ * Remove the default vertical scrollbar in IE 10+.
+ */
+
+textarea {
+  overflow: auto;
+}
+
+/**
+ * 1. Add the correct box sizing in IE 10.
+ * 2. Remove the padding in IE 10.
+ */
+
+[type="checkbox"],
+[type="radio"] {
+  box-sizing: border-box; /* 1 */
+  padding: 0; /* 2 */
+}
+
+/**
+ * Correct the cursor style of increment and decrement buttons in Chrome.
+ */
+
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
+  height: auto;
+}
+
+/**
+ * 1. Correct the odd appearance in Chrome and Safari.
+ * 2. Correct the outline style in Safari.
+ */
+
+[type="search"] {
+  -webkit-appearance: textfield; /* 1 */
+  outline-offset: -2px; /* 2 */
+}
+
+/**
+ * Remove the inner padding in Chrome and Safari on macOS.
+ */
+
+[type="search"]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
+/**
+ * 1. Correct the inability to style clickable types in iOS and Safari.
+ * 2. Change font properties to `inherit` in Safari.
+ */
+
+::-webkit-file-upload-button {
+  -webkit-appearance: button; /* 1 */
+  font: inherit; /* 2 */
+}
+
+/* Interactive
+   ========================================================================== */
+
+/*
+ * Add the correct display in Edge, IE 10+, and Firefox.
+ */
+
+details {
+  display: block;
+}
+
+/*
+ * Add the correct display in all browsers.
+ */
+
+summary {
+  display: list-item;
+}
+
+/* Misc
+   ========================================================================== */
+
+/**
+ * Add the correct display in IE 10+.
+ */
+
+template {
+  display: none;
+}
+
+/**
+ * Add the correct display in IE 10.
+ */
+
+[hidden] {
+  display: none;
+}
+
+/* 
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+GRID
+
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+///////////////////////////////////////////
+
+*/
+
+/*  SECTIONS  ============================================================================= */
+
+.section {
+  clear: both;
+  padding: 0px;
+  margin: 0px;
+}
+
+/*  GROUPING  ============================================================================= */
+.row {
+  max-width: 1140px;
+  /* max width will only ever have an absolute value, it's the full width, everything else should be a %ge */
+  margin: 0 auto;
+  /* t & b = 0, l & r = auto */
+}
+/* .row {
+  zoom: 1; 
+}
+
+.row:before,
+.row:after {
+  content: "";
+  display: table;
+}
+.row:after {
+  clear: both;
+} */
+
+/*  GRID COLUMN SETUP   ==================================================================== */
+
+.col {
+  display: block;
+  float: left;
+  margin: 1% 0 1% 1.6%;
+}
+
+.col:first-child {
+  margin-left: 0;
+} /* all browsers except IE6 and lower */
+
+/*  REMOVE MARGINS AS ALL GO FULL WIDTH AT 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .col {
+    /*margin: 1% 0 1% 0%;*/
+    margin: 0;
+  }
+}
+
+/*  GRID OF TWO   ============================================================================= */
+
+.span-2-of-2 {
+  width: 100%;
+}
+
+.span-1-of-2 {
+  width: 49.2%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-2-of-2 {
     width: 100%;
-    flex-direction: column;
+  }
+  .span-1-of-2 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF THREE   ============================================================================= */
+
+.span-3-of-3 {
+  width: 100%;
+}
+
+.span-2-of-3 {
+  width: 66.13%;
+}
+
+.span-1-of-3 {
+  width: 32.26%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-3-of-3 {
+    width: 100%;
+  }
+  .span-2-of-3 {
+    width: 100%;
+  }
+  .span-1-of-3 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF FOUR   ============================================================================= */
+
+.span-4-of-4 {
+  width: 100%;
+}
+
+.span-3-of-4 {
+  width: 74.6%;
+}
+
+.span-2-of-4 {
+  width: 49.2%;
+}
+
+.span-1-of-4 {
+  width: 23.8%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-4-of-4 {
+    width: 100%;
+  }
+  .span-3-of-4 {
+    width: 100%;
+  }
+  .span-2-of-4 {
+    width: 100%;
+  }
+  .span-1-of-4 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF FIVE   ============================================================================= */
+
+.span-5-of-5 {
+  width: 100%;
+}
+
+.span-4-of-5 {
+  width: 79.68%;
+}
+
+.span-3-of-5 {
+  width: 59.36%;
+}
+
+.span-2-of-5 {
+  width: 39.04%;
+}
+
+.span-1-of-5 {
+  width: 18.72%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-5-of-5 {
+    width: 100%;
+  }
+  .span-4-of-5 {
+    width: 100%;
+  }
+  .span-3-of-5 {
+    width: 100%;
+  }
+  .span-2-of-5 {
+    width: 100%;
+  }
+  .span-1-of-5 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF SIX   ============================================================================= */
+
+.span-6-of-6 {
+  width: 100%;
+}
+
+.span-5-of-6 {
+  width: 83.06%;
+}
+
+.span-4-of-6 {
+  width: 66.13%;
+}
+
+.span-3-of-6 {
+  width: 49.2%;
+}
+
+.span-2-of-6 {
+  width: 32.26%;
+}
+
+.span-1-of-6 {
+  width: 15.33%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-6-of-6 {
+    width: 100%;
+  }
+  .span-5-of-6 {
+    width: 100%;
+  }
+  .span-4-of-6 {
+    width: 100%;
+  }
+  .span-3-of-6 {
+    width: 100%;
+  }
+  .span-2-of-6 {
+    width: 100%;
+  }
+  .span-1-of-6 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF SEVEN   ============================================================================= */
+
+.span-7-of-7 {
+  width: 100%;
+}
+
+.span-6-of-7 {
+  width: 85.48%;
+}
+
+.span-5-of-7 {
+  width: 70.97%;
+}
+
+.span-4-of-7 {
+  width: 56.45%;
+}
+
+.span-3-of-7 {
+  width: 41.94%;
+}
+
+.span-2-of-7 {
+  width: 27.42%;
+}
+
+.span-1-of-7 {
+  width: 12.91%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-7-of-7 {
+    width: 100%;
+  }
+  .span-6-of-7 {
+    width: 100%;
+  }
+  .span-5-of-7 {
+    width: 100%;
+  }
+  .span-4-of-7 {
+    width: 100%;
+  }
+  .span-3-of-7 {
+    width: 100%;
+  }
+  .span-2-of-7 {
+    width: 100%;
+  }
+  .span-1-of-7 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF EIGHT   ============================================================================= */
+
+.span-8-of-8 {
+  width: 100%;
+}
+
+.span-7-of-8 {
+  width: 87.3%;
+}
+
+.span-6-of-8 {
+  width: 74.6%;
+}
+
+.span-5-of-8 {
+  width: 61.9%;
+}
+
+.span-4-of-8 {
+  width: 49.2%;
+}
+
+.span-3-of-8 {
+  width: 36.5%;
+}
+
+.span-2-of-8 {
+  width: 23.8%;
+}
+
+.span-1-of-8 {
+  width: 11.1%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-8-of-8 {
+    width: 100%;
+  }
+  .span-7-of-8 {
+    width: 100%;
+  }
+  .span-6-of-8 {
+    width: 100%;
+  }
+  .span-5-of-8 {
+    width: 100%;
+  }
+  .span-4-of-8 {
+    width: 100%;
+  }
+  .span-3-of-8 {
+    width: 100%;
+  }
+  .span-2-of-8 {
+    width: 100%;
+  }
+  .span-1-of-8 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF NINE   ============================================================================= */
+
+.span-9-of-9 {
+  width: 100%;
+}
+
+.span-8-of-9 {
+  width: 88.71%;
+}
+
+.span-7-of-9 {
+  width: 77.42%;
+}
+
+.span-6-of-9 {
+  width: 66.13%;
+}
+
+.span-5-of-9 {
+  width: 54.84%;
+}
+
+.span-4-of-9 {
+  width: 43.55%;
+}
+
+.span-3-of-9 {
+  width: 32.26%;
+}
+
+.span-2-of-9 {
+  width: 20.97%;
+}
+
+.span-1-of-9 {
+  width: 9.68%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-9-of-9 {
+    width: 100%;
+  }
+  .span-8-of-9 {
+    width: 100%;
+  }
+  .span-7-of-9 {
+    width: 100%;
+  }
+  .span-6-of-9 {
+    width: 100%;
+  }
+  .span-5-of-9 {
+    width: 100%;
+  }
+  .span-4-of-9 {
+    width: 100%;
+  }
+  .span-3-of-9 {
+    width: 100%;
+  }
+  .span-2-of-9 {
+    width: 100%;
+  }
+  .span-1-of-9 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF TEN   ============================================================================= */
+
+.span-10-of-10 {
+  width: 100%;
+}
+
+.span-9-of-10 {
+  width: 89.84%;
+}
+
+.span-8-of-10 {
+  width: 79.68%;
+}
+
+.span-7-of-10 {
+  width: 69.52%;
+}
+
+.span-6-of-10 {
+  width: 59.36%;
+}
+
+.span-5-of-10 {
+  width: 49.2%;
+}
+
+.span-4-of-10 {
+  width: 39.04%;
+}
+
+.span-3-of-10 {
+  width: 28.88%;
+}
+
+.span-2-of-10 {
+  width: 18.72%;
+}
+
+.span-1-of-10 {
+  width: 8.56%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-10-of-10 {
+    width: 100%;
+  }
+  .span-9-of-10 {
+    width: 100%;
+  }
+  .span-8-of-10 {
+    width: 100%;
+  }
+  .span-7-of-10 {
+    width: 100%;
+  }
+  .span-6-of-10 {
+    width: 100%;
+  }
+  .span-5-of-10 {
+    width: 100%;
+  }
+  .span-4-of-10 {
+    width: 100%;
+  }
+  .span-3-of-10 {
+    width: 100%;
+  }
+  .span-2-of-10 {
+    width: 100%;
+  }
+  .span-1-of-10 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF ELEVEN   ============================================================================= */
+
+.span-11-of-11 {
+  width: 100%;
+}
+
+.span-10-of-11 {
+  width: 90.76%;
+}
+
+.span-9-of-11 {
+  width: 81.52%;
+}
+
+.span-8-of-11 {
+  width: 72.29%;
+}
+
+.span-7-of-11 {
+  width: 63.05%;
+}
+
+.span-6-of-11 {
+  width: 53.81%;
+}
+
+.span-5-of-11 {
+  width: 44.58%;
+}
+
+.span-4-of-11 {
+  width: 35.34%;
+}
+
+.span-3-of-11 {
+  width: 26.1%;
+}
+
+.span-2-of-11 {
+  width: 16.87%;
+}
+
+.span-1-of-11 {
+  width: 7.63%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-11-of-11 {
+    width: 100%;
+  }
+  .span-10-of-11 {
+    width: 100%;
+  }
+  .span-9-of-11 {
+    width: 100%;
+  }
+  .span-8-of-11 {
+    width: 100%;
+  }
+  .span-7-of-11 {
+    width: 100%;
+  }
+  .span-6-of-11 {
+    width: 100%;
+  }
+  .span-5-of-11 {
+    width: 100%;
+  }
+  .span-4-of-11 {
+    width: 100%;
+  }
+  .span-3-of-11 {
+    width: 100%;
+  }
+  .span-2-of-11 {
+    width: 100%;
+  }
+  .span-1-of-11 {
+    width: 100%;
+  }
+}
+
+/*  GRID OF TWELVE   ============================================================================= */
+
+.span-12-of-12 {
+  width: 100%;
+}
+
+.span-11-of-12 {
+  width: 91.53%;
+}
+
+.span-10-of-12 {
+  width: 83.06%;
+}
+
+.span-9-of-12 {
+  width: 74.6%;
+}
+
+.span-8-of-12 {
+  width: 66.13%;
+}
+
+.span-7-of-12 {
+  width: 57.66%;
+}
+
+.span-6-of-12 {
+  width: 49.2%;
+}
+
+.span-5-of-12 {
+  width: 40.73%;
+}
+
+.span-4-of-12 {
+  width: 32.26%;
+}
+
+.span-3-of-12 {
+  width: 23.8%;
+}
+
+.span-2-of-12 {
+  width: 15.33%;
+}
+
+.span-1-of-12 {
+  width: 6.86%;
+}
+
+/*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
+
+@media only screen and (max-width: 480px) {
+  .span-12-of-12 {
+    width: 100%;
+  }
+  .span-11-of-12 {
+    width: 100%;
+  }
+  .span-10-of-12 {
+    width: 100%;
+  }
+  .span-9-of-12 {
+    width: 100%;
+  }
+  .span-8-of-12 {
+    width: 100%;
+  }
+  .span-7-of-12 {
+    width: 100%;
+  }
+  .span-6-of-12 {
+    width: 100%;
+  }
+  .span-5-of-12 {
+    width: 100%;
+  }
+  .span-4-of-12 {
+    width: 100%;
+  }
+  .span-3-of-12 {
+    width: 100%;
+  }
+  .span-2-of-12 {
+    width: 100%;
+  }
+  .span-1-of-12 {
+    width: 100%;
   }
 }

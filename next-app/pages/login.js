@@ -38,30 +38,30 @@ const Login = () => {
   }
   return (
     <center>
-      <form onSubmit={handleSubmit}>
-        {/* <p>Login</p> */}
-        <div>
-          <TextField
-            id="outlined-basic"
-            label="email"
-            variant="outlined"
-            name="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
+      {/* <form onSubmit={handleSubmit}> */}
+      {/* <p>Login</p> */}
+      <div>
+        <TextField
+          id="outlined-basic"
+          label="email"
+          variant="outlined"
+          name="email"
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
 
-          <TextField
-            id="outlined-basic"
-            label="password"
-            variant="outlined"
-            name="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        {/* <input
+        <TextField
+          id="outlined-basic"
+          label="password"
+          variant="outlined"
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+      </div>
+      {/* <input
           name="email"
           type="email"
           value={email}
@@ -74,7 +74,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
         /> */}
 
-        {/* <Button
+      {/* <Button
           onClick={handleUpload}
           variant="contained"
           color="secondary"
@@ -90,18 +90,18 @@ const Login = () => {
           Upload
         </Button> */}
 
-        <Button
-          onClick={handleSubmit}
-          type="submit"
-          value="Submit"
-          variant="contained"
-          color="secondary"
-        >
-          Login
-        </Button>
-        {/* <input type="submit" value="Submit" /> */}
-        {loginError && <p style={{ color: "red" }}>{loginError}</p>}
-      </form>
+      <Button
+        onClick={handleSubmit}
+        type="submit"
+        value="Submit"
+        variant="contained"
+        color="secondary"
+      >
+        Login
+      </Button>
+      {/* <input type="submit" value="Submit" /> */}
+      {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+      {/* </form> */}
     </center>
   );
 };

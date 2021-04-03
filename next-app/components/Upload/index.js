@@ -3,6 +3,9 @@ import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
+import CircularProgress from "@material-ui/core/CircularProgress";
+import Modal from "../Modal";
+import useModal from "../../pages/useModal";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -18,16 +21,23 @@ const Upload = (props) => {
   const [error, setError] = useState(false);
   const [errorMessage, seterrorMessage] = useState(null);
   const [fileSelected, setfileSelected] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const { isShowing, toggle, revalidate } = useModal();
+  const [prompt, setPrompt] = useState(props.prompt);
 
   const handleChange = (ev) => {
     setSuccess(false);
     setUrl("");
     setfileSelected(true);
+    // setPrompt(props.prompt.label);
   };
 
-  console.log(props.prompt);
+  console.log(`GOT ` + props.prompt.label);
+  console.log(`AND ` + prompt);
+  // setPrompt(props.prompt.label);
 
   const handleUpload = (ev) => {
+    setLoading(true);
     let file = uploadInput.files[0];
     // Split the filename to get the name and type
     let fileParts = uploadInput.files[0].name.split(".");
@@ -60,15 +70,26 @@ const Upload = (props) => {
           .then((result) => {
             console.log("Response from s3");
             setSuccess(true);
+            setLoading(false);
+            toggle();
           })
           .catch((error) => {
             alert("ERROR " + JSON.stringify(error));
+            setLoading(false);
           });
       })
       .catch((error) => {
         alert(JSON.stringify(error));
+        // TODO: fix sloppy setLoading, figure out the async
+        setLoading(false);
       });
   };
+
+  const RenderSpinner = () => (
+    <div>
+      <p>Loading...</p> <CircularProgress />
+    </div>
+  );
 
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
@@ -90,11 +111,14 @@ const Upload = (props) => {
   return (
     <div className="Upload">
       <center>
-        <h1>Upload a file</h1>
+        <h1>{`${props.prompt.label ? "Upload a file" : ""}`}</h1>
 
-        <div>{JSON.stringify(props.prompt.label)}</div>
+        {/* <div>{JSON.stringify(props.prompt.label)}</div> */}
+
+        <div>{loading ? <RenderSpinner /> : null}</div>
 
         <div>{success ? <SuccessMessage /> : null}</div>
+        {/* <div>{success ? { toggle } : null}</div> */}
 
         <div>{error ? <ErrorMessage /> : null}</div>
 
@@ -125,10 +149,7 @@ const Upload = (props) => {
           className={classes.button}
           startIcon={<CloudUploadIcon />}
           style={{
-            display:
-              props.prompt.label !== undefined && fileSelected
-                ? "inline"
-                : "none",
+            display: prompt !== undefined && fileSelected ? "inline" : "none",
           }}
         >
           Upload
