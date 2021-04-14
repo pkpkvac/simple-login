@@ -100,7 +100,7 @@ function Home() {
 
                   <ul class="main-nav">
                     <li>
-                      <a href="#">Login</a>
+                      <a href="/login">Login</a>
                     </li>
                     <li>
                       <a href="#">How it works</a>
@@ -119,7 +119,9 @@ function Home() {
                 <h1>
                   Share the stories <br /> that brought you here
                 </h1>
-                <a class="btn btn-full" href="#">
+                {/* <Link href="/login">Login</Link> */}
+
+                <a class="btn btn-full" href="/login">
                   Login
                 </a>
                 <a class="btn btn-ghost" href="#">
@@ -191,11 +193,7 @@ function Home() {
               </div>
             </section>
 
-            {/* <section>
-              <div class="row">
-                <h2></h2>
-              </div>
-            </section> */}
+            <section></section>
           </body>
 
           {/* <div>

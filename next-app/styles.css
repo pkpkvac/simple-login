@@ -36,7 +36,8 @@ section {
 
 h1,
 h2,
-h3 {
+h3,
+h4 {
   /* need to do this to remove the margin at the top of the header*/
 
   font-weight: 300;
@@ -70,6 +71,26 @@ h2:after {
   display: block;
   height: 2px;
   background-color: #24a058;
+  /* need to specify content for 'after' */
+  content: " ";
+  width: 100px;
+  /* center it */
+  margin: 0 auto;
+  margin-top: 30px;
+}
+
+h4 {
+  font-size: 160%;
+  word-spacing: 2px;
+  text-align: center;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+h4:after {
+  display: block;
+  height: 2px;
+  background-color: #e67e22;
   /* need to specify content for 'after' */
   content: " ";
   width: 100px;
@@ -187,6 +208,7 @@ h2:after {
 header {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url(/images/friends.jpeg);
+  background-attachment: fixed;
   height: 100vh;
   /* 100% of viewport */
   background-size: cover;
@@ -235,6 +257,117 @@ header {
   top: 0;
   transform: none;
 }
+
+/* -------------------- Testimonials -------------------- */
+
+.section-testimonials {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url(public/images/wedding2.jpg);
+  /* full size, use cover */
+  background-size: cover;
+  color: #fff;
+  background-attachment: fixed;
+}
+blockquote {
+  padding: 2%;
+  font-style: italic;
+  line-height: 145%;
+  position: relative;
+  margin-top: 40px;
+}
+
+blockquote:before {
+  /* content is used for text */
+  content: "\201C";
+  font-size: 300%;
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -5px;
+}
+
+cite {
+  font-size: 90%;
+  margin-top: 25px;
+  display: block;
+}
+
+cite img {
+  height: 45px;
+  border-radius: 50%;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+/* SUS */
+.box img {
+  width: 100%;
+  height: auto;
+  margin-bottom: ;
+}
+
+/* ******************************************************** */
+/* How it works */
+/* ******************************************************** */
+
+.section-steps {
+  background-color: #fff;
+}
+
+.steps-box:first-child {
+  text-align: right;
+  padding-right: 3%;
+  margin-top: 30px;
+}
+
+.steps-box:last-child {
+  padding-left: 3%;
+  margin-top: 70px;
+}
+
+.app-screen {
+  width: 35%;
+}
+
+.works-step {
+  margin-bottom: 50px;
+}
+
+.works-step:last-of-type {
+  margin-bottom: 80px;
+}
+
+.works-step div {
+  color: #e67e22;
+  border: 2px solid #e67e22;
+  display: inline-block;
+  border-radius: 50%;
+  height: 55px;
+  width: 55px;
+  text-align: center;
+  padding: 5px;
+  float: left;
+  font-size: 150%;
+  margin-right: 25px;
+}
+
+.btn-app:link,
+.btn-app:visited {
+  border: 0;
+}
+
+.btn-app img {
+  height: 50px;
+  width: auto;
+  margin-right: 50px;
+}
+
+/* --------------------- SECTION LOGIN ------------------- 
+*/
+.section-login {
+  text-align: center;
+}
+
 /* 
 
 ///////////////////////////////////////////
