@@ -111,7 +111,7 @@ const Upload = (props) => {
   return (
     <div className="Upload">
       <center>
-        <h1>{`${props.prompt.label ? "Upload a file" : ""}`}</h1>
+        <p>Upload a file</p>
 
         {/* <div>{JSON.stringify(props.prompt.label)}</div> */}
 
@@ -128,7 +128,7 @@ const Upload = (props) => {
             uploadInput = ref;
           }}
           type="file"
-          style={{ display: props.prompt.label ? "inline" : "none" }}
+          style={{ display: "inline" }}
         />
 
         {/* <input

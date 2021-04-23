@@ -4,6 +4,7 @@ import cookie from "js-cookie";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import "../pages/_app";
+import Footer from "../components/Footer/Footer";
 
 const Login = () => {
   const [loginError, setLoginError] = useState("");
@@ -78,6 +79,7 @@ const Login = () => {
 
         <div class="row">
           <TextField
+            style={{ marginBottom: "10px" }}
             id="outlined-basic"
             label="email"
             variant="outlined"
@@ -89,6 +91,7 @@ const Login = () => {
         </div>
         <div class="row">
           <TextField
+            style={{ marginBottom: "10px" }}
             id="outlined-basic"
             label="password"
             variant="outlined"
@@ -142,6 +145,7 @@ const Login = () => {
           Upload
         </Button> */}
       </section>
+      <Footer />
     </div>
   );
 };

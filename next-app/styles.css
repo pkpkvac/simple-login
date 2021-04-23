@@ -37,7 +37,8 @@ section {
 h1,
 h2,
 h3,
-h4 {
+h4,
+h5 {
   /* need to do this to remove the margin at the top of the header*/
 
   font-weight: 300;
@@ -97,6 +98,18 @@ h4:after {
   /* center it */
   margin: 0 auto;
   margin-top: 30px;
+}
+
+h5 {
+  font-size: 160%;
+  word-spacing: 2px;
+  text-align: center;
+  padding-top: 20%;
+  padding-right: 10%;
+  padding-left: 10%;
+  /* margin-top: 30px; */
+  margin-bottom: 30px;
+  letter-spacing: 1px;
 }
 
 /* -------------------- Paragraphs -------------------- */
@@ -260,6 +273,15 @@ header {
 
 /* -------------------- Testimonials -------------------- */
 
+.section-features {
+  display: flex;
+  flex-direction: column;
+}
+
+.section-features .long-copy {
+  margin-bottom: 30px;
+}
+
 .section-testimonials {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url(public/images/wedding2.jpg);
@@ -368,8 +390,149 @@ cite img {
   text-align: center;
 }
 
-/* 
+/* -------------------- Slider -------------------- */
 
+.section-slider {
+  text-align: center;
+  padding-left: 25%;
+}
+
+/* ******************************************************** */
+/* Footer */
+/* ******************************************************** */
+
+footer {
+  background-color: #333;
+  padding: 50px;
+  font-size: 80%;
+}
+
+.footer-nav {
+  list-style: none;
+  float: left;
+}
+
+.social-links {
+  list-style: none;
+  float: right;
+}
+
+.footer-nav li,
+.social-links li {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.footer-nav li:last-child,
+.social-links li:last-child {
+  margin: 0;
+}
+
+.footer-nav li a:link,
+.footer-nav li a:visited,
+.social-links li a:link,
+.social-links li a:visited {
+  text-decoration: none;
+  border: 0;
+  color: #888;
+  transition: color 0.2s;
+}
+
+.footer-nav li a:hover,
+.footer-nav li a:active {
+  color: #ddd;
+}
+
+.social-links li a:link,
+.social-links li a:visited {
+  font-size: 160%;
+}
+
+.ion-social-facebook,
+.ion-social-twitter,
+.ion-social-googleplus,
+.ion-social-instagram {
+  transition: color 0.2s;
+}
+
+.ion-social-facebook:hover {
+  color: #3b5998;
+}
+
+.ion-social-twitter:hover {
+  color: #00aced;
+}
+
+.ion-social-googleplus:hover {
+  color: #dd4b39;
+}
+
+.ion-social-instagram:hover {
+  color: #516fa4;
+}
+
+.footer p {
+  color: #888;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ------------UPLOAD ------------ */
+.custom-file {
+  /* padding: 5px 10px;
+  background: #00ad2d;
+  border: 1px solid #00ad2d;
+  position: relative;
+  color: #fff;
+  border-radius: 2px;
+  text-align: center;
+  
+  cursor: pointer; */
+  float: left;
+  text-align: center;
+  background-color: #27ae60;
+  border: 1px solid #27ae60;
+  color: #fff;
+  margin: 0% 40%;
+
+  display: inline-block;
+  padding: 10px 30px;
+  /* 10 px top bottom, 30 left right */
+  font-weight: 300;
+  text-decoration: none;
+  /* to get a rounded edge on the button use this border radius trick */
+  border-radius: 200px;
+  transition: background-color 0.2s, border 0.2s, color 0.2s;
+}
+
+.text-field {
+  padding: 20px;
+}
+/* .custom-file {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 100%;
+  font-size: 24px;
+  width: 100%;
+}
+
+.hide_file {
+  position: absolute;
+  z-index: 1000;
+  opacity: 0;
+  cursor: pointer;
+  right: 0;
+  top: 0;
+  height: 100%;
+  font-size: 24px;
+  width: 100%;
+} */
+
+/*
 ///////////////////////////////////////////
 ///////////////////////////////////////////
 ///////////////////////////////////////////

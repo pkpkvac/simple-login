@@ -15,6 +15,10 @@ import { BiBrain } from "react-icons/bi";
 import { BiCameraMovie } from "react-icons/bi";
 import { HiOutlineCloudUpload } from "react-icons/hi";
 import { GiFairyWand } from "react-icons/gi";
+import Slider from "react-animated-slider";
+import "react-animated-slider/build/horizontal.css";
+
+import Footer from "../components/Footer/Footer";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
@@ -34,9 +38,16 @@ function Home() {
     loggedIn = true;
   }
 
+  const slides = [
+    { title: ["I shouldn't tell this story at a wedding, but ..."] },
+    { title: ["Most embarassing story of the groom/bride I know"] },
+    { title: ["Funniest travel story"] },
+    { title: ["Funniest prank story"] },
+  ];
+
   return (
     <div>
-      <center>
+      {/* <center>
         <Head>
           <title>Story Tree</title>
           <meta
@@ -44,92 +55,97 @@ function Home() {
             content="initial-scale=1.0, width=device-width"
           />
         </Head>
-        {/* <img className="logo" src="/images/logo.jpg"></img> */}
-        {/* <h1>Story Tree</h1> */}
-      </center>
-      {/* <h2></h2> */}
+      </center> */}
 
       {loggedIn && (
         <>
-          {/* <div>
+          <body>
+            <section class="section-slider">
+              <div class="row">
+                <Slider className="slider">
+                  {slides.map((slide, index) => (
+                    <div key={index}>
+                      <h5>{slide.title}</h5>
+                      {/* <div>{[...slide.description].join("<br>")}</div> */}
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </section>
+
+            {/* <div>
             <TextField id="outlined-basic" label="Name" variant="outlined" />
           </div> */}
 
-          <div>
+            {/* <div>
             <Prompt setPrompt={setPrompt} />
-          </div>
+          </div> */}
 
-          <center>
-            <div>
-              <img
-                className="lightbulb"
-                src="/images/lightbulb.jpeg"
-                style={{ display: prompt ? "none" : "block" }}
-              />
-            </div>
-          </center>
-          {/* <div>{JSON.stringify(prompt.label)}</div> */}
+            {/* <div>{JSON.stringify(prompt.label)}</div> */}
 
-          <Upload prompt={prompt} />
+            <Upload prompt={prompt} />
 
-          <div>
-            <Button
-              onClick={() => {
-                cookie.remove("token");
-                revalidate();
-              }}
-              variant="contained"
-              color="secondary"
-            >
-              Logout
-            </Button>
-          </div>
+            <section>
+              <center>
+                <Button
+                  onClick={() => {
+                    cookie.remove("token");
+                    revalidate();
+                  }}
+                  variant="contained"
+                  color="secondary"
+                  style={{ textAlign: "center" }}
+                >
+                  Logout
+                </Button>
+              </center>
+            </section>
+          </body>
         </>
       )}
       {!loggedIn && (
         <>
-          <body>
-            <header>
-              <nav>
-                <div class="row">
-                  <img
-                    src="/images/logo-circular.png"
-                    alt="Storytree logo"
-                    class="logo"
-                  />
+          <header>
+            <nav>
+              <div class="row">
+                <img
+                  src="/images/logo-circular.png"
+                  alt="Storytree logo"
+                  class="logo"
+                />
 
-                  <ul class="main-nav">
-                    <li>
-                      <a href="/login">Login</a>
-                    </li>
-                    <li>
-                      <a href="#">How it works</a>
-                    </li>
-                    <li>
-                      <a href="#">Ideas</a>
-                    </li>
-                    <li>
-                      <a href="#">Contact</a>
-                    </li>
-                  </ul>
-                </div>
-              </nav>
-
-              <div class="hero-text-box">
-                <h1>
-                  Share the stories <br /> that brought you here
-                </h1>
-                {/* <Link href="/login">Login</Link> */}
-
-                <a class="btn btn-full" href="/login">
-                  Login
-                </a>
-                <a class="btn btn-ghost" href="#">
-                  Explain
-                </a>
+                <ul class="main-nav">
+                  <li>
+                    <a href="/login">Login</a>
+                  </li>
+                  <li>
+                    <a href="#">How it works</a>
+                  </li>
+                  <li>
+                    <a href="#">Ideas</a>
+                  </li>
+                  <li>
+                    <a href="#">Contact</a>
+                  </li>
+                </ul>
               </div>
+            </nav>
 
-              {/* <div className="film__container">
+            <div class="hero-text-box">
+              <h1>
+                Share the stories <br /> that brought you here
+              </h1>
+              {/* <Link href="/login">Login</Link> */}
+
+              <a class="btn btn-full" href="/login">
+                Login
+              </a>
+              <a class="btn btn-ghost" href="#">
+                Explain
+              </a>
+            </div>
+
+            {/* <div className="film__container">
                 <div className="film__box">
                   <EmbeddedVideo />
                 </div>
@@ -141,8 +157,8 @@ function Home() {
                 </a>
               </div>
                */}
-            </header>
-
+          </header>
+          <body>
             <section class="section-features">
               <div class="row">
                 <h2>Share stories &mdash; Share memories</h2>
@@ -151,81 +167,47 @@ function Home() {
                   dorkiest, cringest, and most important moments about your
                   beloved couple
                 </p>
+              </div>
 
-                <div class="row">
-                  <div class="col span-1-of-4 box">
-                    <i class="ion-ios-infinite-outline icon-big"></i>
-                    <h3>Brainstorm a tale</h3>
-                    <BiBrain color="#24a058" size="3em" />
-                    <p>
-                      Think of a good story, try to keep it under 5 minutes. If
-                      you need inspiration, look at our Prompts section
-                    </p>
-                  </div>
-                  <div class="col span-1-of-4 box">
-                    <i class="ion-ios-stopwatch-outline icon-big"></i>
-                    <h3>Record your story</h3>
-                    <BiCameraMovie color="#24a058" size="3em" />
-                    <p>
-                      Record your story using your phone, your camera, or use
-                      our online service to connect directly to your phone
-                    </p>
-                  </div>
-                  <div class="col span-1-of-4 box">
-                    <i class="ion-ios-nutrition-outline icon-big"></i>
-                    <h3>Upload your story</h3>
-                    <HiOutlineCloudUpload color="#24a058" size="3em" />
-                    <p>
-                      Login and upload the story you recorded from the previous
-                      step. Feel free to attach photos related to the story
-                    </p>
-                  </div>
-                  <div class="col span-1-of-4 box">
-                    <i class="ion-ios-cart-outline icon-big"></i>
-                    <h3>Wait for it ...</h3>
-                    <GiFairyWand color="#24a058" size="3em" />
-                    <p>
-                      Wait for Mehdi to work his editing magic, and on the day
-                      of the wedding, see your story told!
-                    </p>
-                  </div>
+              <div class="row">
+                <div class="col span-1-of-4 box">
+                  <h3>Brainstorm a tale</h3>
+                  <BiBrain color="#24a058" size="3em" />
+                  <p>
+                    Think of a good story, try to keep it under 5 minutes. If
+                    you need inspiration, look at our Prompts section
+                  </p>
+                </div>
+                <div class="col span-1-of-4 box">
+                  <h3>Record your story</h3>
+                  <BiCameraMovie color="#24a058" size="3em" />
+                  <p>
+                    Record your story using your phone, your camera, or use our
+                    online service to connect directly to your phone
+                  </p>
+                </div>
+                <div class="col span-1-of-4 box">
+                  <h3>Upload your story</h3>
+                  <HiOutlineCloudUpload color="#24a058" size="3em" />
+                  <p>
+                    Login and upload the story you recorded from the previous
+                    step. Feel free to attach photos related to the story
+                  </p>
+                </div>
+                <div class="col span-1-of-4 box">
+                  <h3>Wait for it ...</h3>
+                  <GiFairyWand color="#24a058" size="3em" />
+                  <p>
+                    Wait for Mehdi to work his editing magic, and on the day of
+                    the wedding, see your story told!
+                  </p>
                 </div>
               </div>
             </section>
-
-            <section></section>
           </body>
-
-          {/* <div>
-            <Link href="/signup">
-            <Button variant="contained" color="primary">
-            Signup
-            </Button>
-            </Link>
-          </div> */}
         </>
       )}
-
-      {/* {loggedIn && (
-        <>
-           
-          <p>Welcome {data.email}!</p>
-          <button
-            onClick={() => {
-              cookie.remove("token");
-              revalidate();
-            }}
-          >
-            Logout
-          </button>
-        </>
-      )}
-      {!loggedIn && (
-        <>
-          <Link href="/login">Login</Link>
-          
-        </>
-      )} */}
+      <Footer />
     </div>
   );
 }
