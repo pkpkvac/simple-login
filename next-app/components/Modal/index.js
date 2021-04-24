@@ -1,42 +1,63 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import VideocamIcon from "@material-ui/icons/Videocam";
-import Button from "@material-ui/core/Button";
-import PublishIcon from "@material-ui/icons/Publish";
-import IconButton from "@material-ui/core/IconButton";
-import Upload from "../Upload";
+import React, { useState } from "react";
+// import Check from '../../public/images/check.png'
+import classes from "./Modal.module.css";
 
-const Modal = ({ isShowing, hide }) =>
-  isShowing
-    ? ReactDOM.createPortal(
-        <React.Fragment>
-          <div className="modal-overlay" />
-          <div
-            className="modal-wrapper"
-            aria-modal
-            aria-hidden
-            tabIndex={-1}
-            role="dialog"
-          >
-            <div className="modal">
-              <div className="modal-header">
-                <button
-                  type="button"
-                  className="modal-close-button"
-                  data-dismiss="modal"
-                  aria-label="Close"
-                  onClick={hide}
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <p> Thank you </p>
-              {/* https://www.geeksforgeeks.org/how-to-create-a-upload-file-button-in-reactjs/ */}
-            </div>
-          </div>
-        </React.Fragment>,
-        document.body
-      )
-    : null;
+const Modal = (props) => {
+  const [success, setSuccess] = useState("");
+
+  let Display;
+
+  const SuccessMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+    </div>
+  );
+  const ErrorMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+      <span>{errorMessage}</span>
+      <br />
+    </div>
+  );
+
+  if (props.success) {
+    Display = SuccessMessage;
+    console.log(" GO11T :" + props.success);
+  } else {
+    Display = ErrorMessage;
+  }
+
+  if (!props.show) {
+    return null;
+  }
+
+  return (
+    <div className={classes.modal} onClick={props.onCloseModal}>
+      <div
+        className={classes["modal-content"]}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className={classes["modal-header"]}>
+          <h4 className={classes["modal-title"]}>
+            {props.success ? "SUCCESSFUL UPLOAD" : "DAMN"}
+          </h4>
+        </div>
+        <div className={classes["modal-body"]}>
+          <Display />
+        </div>
+        <div className={classes["modal-footer"]}>
+          {/* <button onClick={props.onCloseModal} className={classes["button"]}>
+            Close
+          </button> */}
+
+          <button onClick={props.onCloseModal} class={classes.button}>
+            Upload More Items
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default Modal;

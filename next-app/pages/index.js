@@ -17,16 +17,14 @@ import { HiOutlineCloudUpload } from "react-icons/hi";
 import { GiFairyWand } from "react-icons/gi";
 import Slider from "react-animated-slider";
 import "react-animated-slider/build/horizontal.css";
-
+import Modal from "../components/Modal";
 import Footer from "../components/Footer/Footer";
 
 function Home() {
   const [prompt, setPrompt] = useState("");
-
-  //will likely have to manage the state here between the views:
-  //1. SelectView - contains lightbulb
-  //2. UploadView - have the select box & upload & RenderSpinner
-  //3. SuccessView - img, 2 buttons (logout, upload again)
+  const [showModal, setShowModal] = useState("");
+  const [uploadStatus, setUploadStatus] = useState("");
+  // Maybe use a ref for the showModal if you have problems
 
   const { data, revalidate } = useSWR("/api/me", async function (args) {
     const res = await fetch(args);
@@ -37,6 +35,12 @@ function Home() {
   if (data.email) {
     loggedIn = true;
   }
+
+  const fileUploadHandler = (uploadStatus) => {
+    console.log("BRA" + uploadStatus);
+    setUploadStatus(uploadStatus);
+    setShowModal(true);
+  };
 
   const slides = [
     { title: ["I shouldn't tell this story at a wedding, but ..."] },
@@ -59,34 +63,15 @@ function Home() {
 
       {loggedIn && (
         <>
-          <body>
-            <section class="section-slider">
+          <section class="header-lite">
+            <nav>
               <div class="row">
-                <Slider className="slider">
-                  {slides.map((slide, index) => (
-                    <div key={index}>
-                      <h5>{slide.title}</h5>
-                      {/* <div>{[...slide.description].join("<br>")}</div> */}
-                    </div>
-                  ))}
-                </Slider>
-              </div>
-            </section>
+                <img
+                  src="/images/logo-circular.png"
+                  alt="Storytree logo"
+                  class="logo"
+                />
 
-            {/* <div>
-            <TextField id="outlined-basic" label="Name" variant="outlined" />
-          </div> */}
-
-            {/* <div>
-            <Prompt setPrompt={setPrompt} />
-          </div> */}
-
-            {/* <div>{JSON.stringify(prompt.label)}</div> */}
-
-            <Upload prompt={prompt} />
-
-            <section>
-              <center>
                 <Button
                   onClick={() => {
                     cookie.remove("token");
@@ -98,7 +83,31 @@ function Home() {
                 >
                   Logout
                 </Button>
-              </center>
+              </div>
+            </nav>
+          </section>
+
+          <body>
+            <section class="section-slider">
+              <div class="row">
+                <Slider className="slider">
+                  {slides.map((slide, index) => (
+                    <div key={index}>
+                      <h5>{slide.title}</h5>
+                    </div>
+                  ))}
+                </Slider>
+              </div>
+            </section>
+
+            <Upload onFileUpload={fileUploadHandler} prompt={prompt} />
+            <Modal
+              onCloseModal={() => setShowModal(false)}
+              show={showModal}
+              success={uploadStatus}
+            />
+            <section>
+              <center></center>
             </section>
           </body>
         </>

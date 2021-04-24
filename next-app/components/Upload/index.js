@@ -1,10 +1,10 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import Modal from "../Modal";
+
 import useModal from "../../pages/useModal";
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +29,7 @@ const Upload = (props) => {
     setSuccess(false);
     setUrl("");
     setfileSelected(true);
-    // setPrompt(props.prompt.label);
   };
-
-  console.log(`GOT ` + props.prompt.label);
-  console.log(`AND ` + prompt);
-  // setPrompt(props.prompt.label);
 
   const handleUpload = (ev) => {
     setLoading(true);
@@ -43,9 +38,6 @@ const Upload = (props) => {
     let fileParts = uploadInput.files[0].name.split(".");
     let fileName = fileParts[0];
     let fileType = fileParts[1];
-    console.log("Preparing the upload");
-
-    // *** will need to add a promise here for SendGrid API as well, also, change code to use fetch instead of axios
 
     axios
       .post("http://localhost:3001/sign_s3", {
@@ -69,19 +61,22 @@ const Upload = (props) => {
           .put(signedRequest, file, options)
           .then((result) => {
             console.log("Response from s3");
-            setSuccess(true);
+            props.onFileUpload(true);
+            // setSuccess(true);
             setLoading(false);
             toggle();
           })
           .catch((error) => {
             alert("ERROR " + JSON.stringify(error));
             setLoading(false);
+            props.onFileUpload(false);
           });
       })
       .catch((error) => {
         alert(JSON.stringify(error));
-        // TODO: fix sloppy setLoading, figure out the async
+
         setLoading(false);
+        props.onFileUpload(false);
       });
   };
 
@@ -91,21 +86,21 @@ const Upload = (props) => {
     </div>
   );
 
-  const SuccessMessage = () => (
-    <div style={{ padding: 50 }}>
-      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-      {/* <a href={url}>Access the file here</a> */}
-      <br />
-    </div>
-  );
-  const ErrorMessage = () => (
-    <div style={{ padding: 50 }}>
-      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
-      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
-      <span>{errorMessage}</span>
-      <br />
-    </div>
-  );
+  // const SuccessMessage = () => (
+  //   <div style={{ padding: 50 }}>
+  //     <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+  //     {/* <a href={url}>Access the file here</a> */}
+  //     <br />
+  //   </div>
+  // );
+  // const ErrorMessage = () => (
+  //   <div style={{ padding: 50 }}>
+  //     <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+  //     <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+  //     <span>{errorMessage}</span>
+  //     <br />
+  //   </div>
+  // );
   const classes = useStyles();
 
   return (
@@ -131,16 +126,7 @@ const Upload = (props) => {
           style={{ display: "inline" }}
         />
 
-        {/* <input
-          color="primary"
-          accept="image/*"
-          type="file"
-          onChange={handleChange}
-          id="icon-button-file"
-          style={{ display: "none" }}
-        /> */}
         <br />
-        {/* <button onClick={handleUpload}>UPLOAD</button> */}
 
         <Button
           onClick={handleUpload}
