@@ -2,7 +2,8 @@ import { useState } from "react";
 import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import useSWR from "swr";
-import Link from "next/link";
+import { Link } from "react-scroll";
+// import Link from "next/link";
 import cookie from "js-cookie";
 import { Redirect } from "react-router-dom";
 import "../pages/_app";
@@ -128,13 +129,23 @@ function Home() {
                     <a href="/login">Login</a>
                   </li>
                   <li>
-                    <a href="#">How it works</a>
+                    <Link
+                      className="Link"
+                      to="how-it-works"
+                      spy={true}
+                      smooth={true}
+                    >
+                      HOW IT WORKS
+                      {/* <a href="#">How it works</a> */}
+                    </Link>
                   </li>
                   <li>
                     <a href="#">Ideas</a>
                   </li>
                   <li>
-                    <a href="#">Contact</a>
+                    <a href="https://www.hereandvowstudio.com/book-meeting">
+                      Contact
+                    </a>
                   </li>
                 </ul>
               </div>
@@ -149,9 +160,11 @@ function Home() {
               <a class="btn btn-full" href="/login">
                 Login
               </a>
-              <a class="btn btn-ghost" href="#">
-                Explain
-              </a>
+              <Link className="Link" to="how-it-works" spy={true} smooth={true}>
+                <a class="btn btn-ghost" href="#">
+                  Explain
+                </a>
+              </Link>
             </div>
 
             {/* <div className="film__container">
@@ -168,7 +181,7 @@ function Home() {
                */}
           </header>
           <body>
-            <section class="section-features">
+            <section id="how-it-works" class="section-features">
               <div class="row">
                 <h2>Share stories &mdash; Share memories</h2>
                 <p class="long-copy">

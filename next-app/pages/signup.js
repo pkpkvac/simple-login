@@ -36,35 +36,40 @@ const Signup = () => {
       });
   }
   return (
-    <form onSubmit={handleSubmit}>
-      <p>Sign Up</p>
-      <label htmlFor="email">
-        email
-        <input
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          name="email"
-          type="email"
-        />
-      </label>
+    <>
+      <div className="imperator-div">
+        <img className="imperator" src="/images/the-imperator.jpg"></img>
+        <form onSubmit={handleSubmit}>
+          <p>Sign Up</p>
+          <label htmlFor="email">
+            email
+            <input
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              name="email"
+              type="email"
+            />
+          </label>
 
-      <br />
+          <br />
 
-      <label for="password">
-        password
-        <input
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          name="password"
-          type="password"
-        />
-      </label>
+          <label for="password">
+            password
+            <input
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              type="password"
+            />
+          </label>
 
-      <br />
+          <br />
 
-      <input type="submit" value="Submit" />
-      {signupError && <p style={{ color: "red" }}>{signupError}</p>}
-    </form>
+          <input type="submit" value="Submit" />
+          {signupError && <p style={{ color: "red" }}>{signupError}</p>}
+        </form>
+      </div>
+    </>
   );
 };
 

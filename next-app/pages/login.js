@@ -40,6 +40,17 @@ const Login = () => {
   }
   return (
     <div class="login-div">
+      <section class="header-lite">
+        <nav>
+          <div class="row">
+            <img
+              src="/images/logo-circular.png"
+              alt="Storytree logo"
+              class="logo"
+            />
+          </div>
+        </nav>
+      </section>
       <section class="section-steps">
         <div class="row">
           <h4>How it works &mdash; Simple as 1, 2, 3</h4>
@@ -53,7 +64,8 @@ const Login = () => {
               <div>1</div>
               <p>
                 Think of a good story, try to keep it under 5 minutes. If you
-                need inspiration, look at our Prompts section on the next page
+                need inspiration, look at our Prompts section on the next page.
+                Short and sweet!
               </p>
             </div>
             <div class="works-step">
@@ -102,7 +114,10 @@ const Login = () => {
           />
         </div>
         <div class="row">
-          <Button
+          <a class="btn-login" onClick={handleSubmit}>
+            Login
+          </a>
+          {/* <Button
             onClick={handleSubmit}
             type="submit"
             value="Submit"
@@ -110,7 +125,7 @@ const Login = () => {
             color="primary"
           >
             Login
-          </Button>
+          </Button> */}
           {/* <input type="submit" value="Submit" /> */}
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           {/* </form> */}
