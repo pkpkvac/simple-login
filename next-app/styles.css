@@ -377,14 +377,6 @@ header {
   margin-bottom: 30px;
 }
 
-.section-testimonials {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url(public/images/wedding2.jpg);
-  /* full size, use cover */
-  background-size: cover;
-  color: #fff;
-  background-attachment: fixed;
-}
 blockquote {
   padding: 2%;
   font-style: italic;
