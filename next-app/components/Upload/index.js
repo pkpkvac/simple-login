@@ -123,12 +123,19 @@ const Upload = (props) => {
             uploadInput = ref;
           }}
           type="file"
-          style={{ display: "inline" }}
+          style={{ display: "inline", marginBottom: "25px" }}
         />
 
         <br />
 
-        <Button
+        <a
+          class="btn-upload"
+          onClick={handleUpload}
+          style={{ display: fileSelected ? "inline" : "none" }}
+        >
+          Upload
+        </a>
+        {/* <Button
           onClick={handleUpload}
           variant="contained"
           color="secondary"
@@ -139,7 +146,7 @@ const Upload = (props) => {
           }}
         >
           Upload
-        </Button>
+        </Button> */}
       </center>
     </div>
   );

@@ -73,7 +73,16 @@ function Home() {
                   class="logo"
                 />
 
-                <Button
+                <a
+                  class="btn-logout"
+                  onClick={() => {
+                    cookie.remove("token");
+                    revalidate();
+                  }}
+                >
+                  Logout
+                </a>
+                {/* <Button
                   onClick={() => {
                     cookie.remove("token");
                     revalidate();
@@ -83,7 +92,7 @@ function Home() {
                   style={{ textAlign: "center" }}
                 >
                   Logout
-                </Button>
+                </Button> */}
               </div>
             </nav>
           </section>
