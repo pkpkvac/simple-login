@@ -22,7 +22,6 @@ const Upload = (props) => {
   const [errorMessage, seterrorMessage] = useState(null);
   const [fileSelected, setfileSelected] = useState(false);
   const [loading, setLoading] = useState(false);
-  const { isShowing, toggle, revalidate } = useModal();
   const [prompt, setPrompt] = useState(props.prompt);
 
   const handleChange = (ev) => {
