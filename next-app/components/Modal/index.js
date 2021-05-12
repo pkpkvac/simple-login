@@ -16,7 +16,6 @@ const Modal = (props) => {
     <div style={{ padding: 50 }}>
       <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
       <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
-      <span>{errorMessage}</span>
       <br />
     </div>
   );

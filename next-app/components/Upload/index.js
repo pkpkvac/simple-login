@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
-import CloudUploadIcon from "@material-ui/icons/CloudUpload";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 import useModal from "../../pages/useModal";
@@ -19,10 +17,9 @@ const Upload = (props) => {
   const [success, setSuccess] = useState(false);
   const [url, setUrl] = useState(null);
   const [error, setError] = useState(false);
-  const [errorMessage, seterrorMessage] = useState(null);
   const [fileSelected, setfileSelected] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [prompt, setPrompt] = useState(props.prompt);
+  const toggle = useModal();
 
   const handleChange = (ev) => {
     setSuccess(false);
@@ -37,12 +34,14 @@ const Upload = (props) => {
     let fileParts = uploadInput.files[0].name.split(".");
     let fileName = fileParts[0];
     let fileType = fileParts[1];
-
+    console.log("FILE INFO:");
+    console.log(file);
+    console.log(props.weddingID);
     axios
       .post("http://localhost:3001/sign_s3", {
         fileName: fileName,
         fileType: fileType,
-        //weddingID (to generate s3 folder in the bucket)
+        weddingID: props.weddingID,
       })
       .then((response) => {
         var returnData = response.data.data.returnData;

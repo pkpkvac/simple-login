@@ -8,7 +8,6 @@ const Signup = () => {
   const [signupError, setSignupError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [passwordConfirmation, setPasswordConfirmation] = useState("");
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -42,12 +41,12 @@ const Signup = () => {
         <form onSubmit={handleSubmit}>
           <p>Sign Up</p>
           <label htmlFor="email">
-            email
+            wedding id
             <input
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               name="email"
-              type="email"
+              type="text"
             />
           </label>
 

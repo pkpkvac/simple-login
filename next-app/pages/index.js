@@ -1,16 +1,9 @@
 import { useState } from "react";
-import Head from "next/head";
 import fetch from "isomorphic-unfetch";
 import useSWR from "swr";
 import { Link } from "react-scroll";
-// import Link from "next/link";
 import cookie from "js-cookie";
-import { Redirect } from "react-router-dom";
 import "../pages/_app";
-import EmbeddedVideo from "../components/EmbeddedVideo";
-import Prompt, { selectedOption } from "../components/Prompts";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import Upload from "../components/Upload";
 import { BiBrain } from "react-icons/bi";
 import { BiCameraMovie } from "react-icons/bi";
@@ -34,6 +27,8 @@ function Home() {
   if (!data) return <h1>Loading...</h1>;
   let loggedIn = false;
   if (data.email) {
+    console.log("LOGIN SWR");
+    console.log(data);
     loggedIn = true;
   }
 
@@ -52,16 +47,6 @@ function Home() {
 
   return (
     <div>
-      {/* <center>
-        <Head>
-          <title>Story Tree</title>
-          <meta
-            name="viewport"
-            content="initial-scale=1.0, width=device-width"
-          />
-        </Head>
-      </center> */}
-
       {loggedIn && (
         <>
           <section class="header-lite">
@@ -82,17 +67,6 @@ function Home() {
                 >
                   Logout
                 </a>
-                {/* <Button
-                  onClick={() => {
-                    cookie.remove("token");
-                    revalidate();
-                  }}
-                  variant="contained"
-                  color="secondary"
-                  style={{ textAlign: "center" }}
-                >
-                  Logout
-                </Button> */}
               </div>
             </nav>
           </section>
@@ -110,7 +84,11 @@ function Home() {
               </div>
             </section>
 
-            <Upload onFileUpload={fileUploadHandler} prompt={prompt} />
+            <Upload
+              weddingID={data.email}
+              onFileUpload={fileUploadHandler}
+              prompt={prompt}
+            />
             <Modal
               onCloseModal={() => setShowModal(false)}
               show={showModal}
@@ -145,7 +123,6 @@ function Home() {
                       smooth={true}
                     >
                       HOW IT WORKS
-                      {/* <a href="#">How it works</a> */}
                     </Link>
                   </li>
                   <li>
@@ -164,7 +141,6 @@ function Home() {
               <h1>
                 Share the stories <br /> that brought you here
               </h1>
-              {/* <Link href="/login">Login</Link> */}
 
               <a class="btn btn-full" href="/login">
                 Login
@@ -175,19 +151,6 @@ function Home() {
                 </a>
               </Link>
             </div>
-
-            {/* <div className="film__container">
-                <div className="film__box">
-                  <EmbeddedVideo />
-                </div>
-              </div>
-
-              <div>
-                <a class="btn btn-login" href="/login">
-                  Login
-                </a>
-              </div>
-               */}
           </header>
           <body>
             <section id="how-it-works" class="section-features">
@@ -241,9 +204,6 @@ function Home() {
       <Footer />
     </div>
   );
-}
-{
-  /* loggedIn && skipIntro && (<> .... </>) */
 }
 
 export default Home;

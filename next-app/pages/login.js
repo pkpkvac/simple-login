@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Router from "next/router";
 import cookie from "js-cookie";
 import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
 import "../pages/_app";
 import Footer from "../components/Footer/Footer";
 
@@ -86,9 +85,6 @@ const Login = () => {
         </div>
       </section>
       <section class="section-login">
-        {/* <form onSubmit={handleSubmit}> */}
-        {/* <p>Login</p> */}
-
         <div class="row">
           <TextField
             style={{ marginBottom: "10px" }}
@@ -117,48 +113,8 @@ const Login = () => {
           <a class="btn-login" onClick={handleSubmit}>
             Login
           </a>
-          {/* <Button
-            onClick={handleSubmit}
-            type="submit"
-            value="Submit"
-            variant="contained"
-            color="primary"
-          >
-            Login
-          </Button> */}
-          {/* <input type="submit" value="Submit" /> */}
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
-          {/* </form> */}
         </div>
-
-        {/* <input
-          name="email"
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <input
-          name="password"
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        /> */}
-
-        {/* <Button
-          onClick={handleUpload}
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-          
-          style={{
-            display:
-              props.prompt.label !== undefined && fileSelected
-                ? "inline"
-                : "none",
-          }}
-        >
-          Upload
-        </Button> */}
       </section>
       <Footer />
     </div>

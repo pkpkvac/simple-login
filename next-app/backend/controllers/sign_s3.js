@@ -13,11 +13,13 @@ exports.sign_s3 = (req, res) => {
   const s3 = new aws.S3(); // Create a new instance of S3
   const fileName = req.body.fileName;
   const fileType = req.body.fileType;
-  //const weddingID = req.body.weddingID;
+  const weddingID = req.body.weddingID;
+  console.log("LE BAKEND");
+  console.log(weddingID);
 
   // Set up the payload of what we are sending to the S3 api
   const s3Params = {
-    Bucket: S3_BUCKET,
+    Bucket: `${S3_BUCKET}/${weddingID}`,
     Key: fileName,
     Expires: 50,
     ContentType: fileType,
@@ -26,14 +28,22 @@ exports.sign_s3 = (req, res) => {
   // Make a request to the S3 API to get a signed URL which we can use to upload our file
   s3.getSignedUrl("putObject", s3Params, (err, data) => {
     if (err) {
-      console.log(err);
+      console.log("RREEEE");
       res.json({ success: false, error: err });
     }
+    console.log("RREEEERRER");
+    console.log(data);
+
     // Data payload of what we are sending back, the url of the signedRequest and a URL where we can access the content after its saved.
+
+    //TODO: Figure out the hell to do with this
     const returnData = {
       signedRequest: data,
       url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`,
     };
+
+    console.log("RETURNDATA?");
+    console.log(returnData);
     res.json({ success: true, data: { returnData } });
   });
 };
