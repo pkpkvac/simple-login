@@ -3,8 +3,6 @@ import axios from "axios";
 import { makeStyles } from "@material-ui/core/styles";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import useModal from "../../pages/useModal";
-
 const useStyles = makeStyles((theme) => ({
   button: {
     margin: theme.spacing(1),
@@ -19,7 +17,6 @@ const Upload = (props) => {
   const [error, setError] = useState(false);
   const [fileSelected, setfileSelected] = useState(false);
   const [loading, setLoading] = useState(false);
-  const toggle = useModal();
 
   const handleChange = (ev) => {
     setSuccess(false);
@@ -58,21 +55,15 @@ const Upload = (props) => {
         axios
           .put(signedRequest, file, options)
           .then((result) => {
-            console.log("Response from s3");
             props.onFileUpload(true);
-            // setSuccess(true);
             setLoading(false);
-            toggle();
           })
-          .catch((error) => {
-            alert("ERROR " + JSON.stringify(error));
+          .catch((err) => {
             setLoading(false);
             props.onFileUpload(false);
           });
       })
-      .catch((error) => {
-        alert(JSON.stringify(error));
-
+      .catch((err) => {
         setLoading(false);
         props.onFileUpload(false);
       });
@@ -84,21 +75,21 @@ const Upload = (props) => {
     </div>
   );
 
-  // const SuccessMessage = () => (
-  //   <div style={{ padding: 50 }}>
-  //     <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-  //     {/* <a href={url}>Access the file here</a> */}
-  //     <br />
-  //   </div>
-  // );
-  // const ErrorMessage = () => (
-  //   <div style={{ padding: 50 }}>
-  //     <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
-  //     <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
-  //     <span>{errorMessage}</span>
-  //     <br />
-  //   </div>
-  // );
+  const SuccessMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+      {/* <a href={url}>Access the file here</a> */}
+      <br />
+    </div>
+  );
+  const ErrorMessage = () => (
+    <div style={{ padding: 50 }}>
+      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+      <span>{errorMessage}</span>
+      <br />
+    </div>
+  );
   const classes = useStyles();
 
   return (
@@ -133,121 +124,9 @@ const Upload = (props) => {
         >
           Upload
         </a>
-        {/* <Button
-          onClick={handleUpload}
-          variant="contained"
-          color="secondary"
-          className={classes.button}
-          startIcon={<CloudUploadIcon />}
-          style={{
-            display: prompt !== undefined && fileSelected ? "inline" : "none",
-          }}
-        >
-          Upload
-        </Button> */}
       </center>
     </div>
   );
 };
-
-// class Upload extends Component {
-//   // change to function component
-//   constructor(props) {
-//     super(props);
-//     this.state = {
-//       success: false,
-//       url: "",
-//       error: false,
-//       errorMessage: "",
-//     };
-//   }
-
-//   handleChange = (ev) => {
-//     this.setState({ success: false, url: "" });
-//   };
-//   handleUpload = (ev) => {
-//     let file = this.uploadInput.files[0];
-//     // Split the filename to get the name and type
-//     let fileParts = this.uploadInput.files[0].name.split(".");
-//     let fileName = fileParts[0];
-//     let fileType = fileParts[1];
-//     console.log("Preparing the upload");
-
-//     // *** will need to add a promise here for SendGrid API as well, also, change code to use fetch instead of axios
-
-//     axios
-//       .post("http://localhost:3001/sign_s3", {
-//         fileName: fileName,
-//         fileType: fileType,
-//         //weddingID (to generate s3 folder in the bucket)
-//       })
-//       .then((response) => {
-//         var returnData = response.data.data.returnData;
-//         var signedRequest = returnData.signedRequest;
-//         var url = returnData.url;
-//         this.setState({ url: url });
-//         console.log("Recieved a signed request " + signedRequest);
-
-//         var options = {
-//           headers: {
-//             "Content-Type": fileType,
-//           },
-//         };
-//         axios
-//           .put(signedRequest, file, options)
-//           .then((result) => {
-//             console.log("Response from s3");
-//             this.setState({ success: true });
-//           })
-//           .catch((error) => {
-//             alert("ERROR " + JSON.stringify(error));
-//           });
-//       })
-//       .catch((error) => {
-//         alert(JSON.stringify(error));
-//       });
-//   };
-
-//   render() {
-//     const SuccessMessage = () => (
-//       <div style={{ padding: 50 }}>
-//         <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
-//         <a href={this.state.url}>Access the file here</a>
-//         <br />
-//       </div>
-//     );
-//     const ErrorMessage = () => (
-//       <div style={{ padding: 50 }}>
-//         <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
-//         <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
-//         <span>{this.state.errorMessage}</span>
-//         <br />
-//       </div>
-//     );
-//     return (
-//       <div className="Upload">
-//         <center>
-//           <h1>Upload a file</h1>
-
-//           <div>{JSON.stringify(this.props.prompt.label)}</div>
-
-//           <div>{this.state.success ? <SuccessMessage /> : null}</div>
-
-//           <div>{this.state.error ? <ErrorMessage /> : null}</div>
-
-//           <input
-//             onChange={this.handleChange}
-//             ref={(ref) => {
-//               this.uploadInput = ref;
-//             }}
-//             type="file"
-//           />
-//           <br />
-//           <button onClick={this.handleUpload}>UPLOAD</button>
-//         </center>
-//       </div>
-//     );
-//   }
-// }
 
 export default Upload;

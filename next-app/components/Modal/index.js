@@ -25,6 +25,7 @@ const Modal = (props) => {
     console.log(" GO11T :" + props.success);
   } else {
     Display = ErrorMessage;
+    console.log(" GO22T :" + props.success);
   }
 
   if (!props.show) {

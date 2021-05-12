@@ -31,7 +31,7 @@ exports.sign_s3 = (req, res) => {
       console.log("RREEEE");
       res.json({ success: false, error: err });
     }
-    console.log("RREEEERRER");
+    console.log("RREEEERRER NEEDS ATTENTION");
     console.log(data);
 
     // Data payload of what we are sending back, the url of the signedRequest and a URL where we can access the content after its saved.

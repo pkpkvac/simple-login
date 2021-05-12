@@ -27,8 +27,6 @@ function Home() {
   if (!data) return <h1>Loading...</h1>;
   let loggedIn = false;
   if (data.email) {
-    console.log("LOGIN SWR");
-    console.log(data);
     loggedIn = true;
   }
 
