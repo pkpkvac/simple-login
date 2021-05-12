@@ -1,20 +1,17 @@
 import React, { useState } from "react";
-// import Check from '../../public/images/check.png'
 import classes from "./Modal.module.css";
 
 const Modal = (props) => {
-  const [success, setSuccess] = useState("");
-
   let Display;
 
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD (PAY YOUR DEVS)</h3>
     </div>
   );
   const ErrorMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
+      <h3 style={{ color: "red" }}>FAILED UPLOAD (PAY YOUR DEVS)</h3>
       <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
       <br />
     </div>
@@ -22,10 +19,8 @@ const Modal = (props) => {
 
   if (props.success) {
     Display = SuccessMessage;
-    console.log(" GO11T :" + props.success);
   } else {
     Display = ErrorMessage;
-    console.log(" GO22T :" + props.success);
   }
 
   if (!props.show) {
