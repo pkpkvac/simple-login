@@ -35,5 +35,4 @@ yarn-error.log*
 # vercel
 .vercel
 
-public/images
 ../snscreds.csv
