@@ -42,11 +42,27 @@ const Login = () => {
       <section class="header-lite">
         <nav>
           <div class="row">
-            <img
-              src="/images/logo-circular.png"
-              alt="Storytree logo"
-              class="logo"
-            />
+            <a
+              href="/"
+              onClick={() => {
+                Router.push("/");
+              }}
+            >
+              <img
+                src="/images/logo-circular.png"
+                alt="Storytree logo"
+                class="logo"
+              />
+            </a>
+
+            <a
+              class="btn-logout"
+              onClick={() => {
+                Router.push("/");
+              }}
+            >
+              Home
+            </a>
           </div>
         </nav>
       </section>

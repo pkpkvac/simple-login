@@ -31,7 +31,6 @@ function Home() {
   }
 
   const fileUploadHandler = (uploadStatus) => {
-    console.log("BRA" + uploadStatus);
     setUploadStatus(uploadStatus);
     setShowModal(true);
   };
