@@ -31,11 +31,8 @@ const Upload = (props) => {
     let fileParts = uploadInput.files[0].name.split(".");
     let fileName = fileParts[0];
     let fileType = fileParts[1];
-    console.log("FILE INFO:");
-    console.log(file);
-    console.log(props.weddingID);
     axios
-      .post("http://localhost:3001/sign_s3", {
+      .post("/api/fileupload", {
         fileName: fileName,
         fileType: fileType,
         weddingID: props.weddingID,
@@ -45,7 +42,6 @@ const Upload = (props) => {
         var signedRequest = returnData.signedRequest;
         var url = returnData.url;
         setUrl(url);
-        console.log("Recieved a signed request " + signedRequest);
 
         var options = {
           headers: {

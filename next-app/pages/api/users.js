@@ -5,8 +5,7 @@ const v4 = require("uuid").v4;
 const jwt = require("jsonwebtoken");
 const jwtSecret = "SUPERSECRETE20220";
 
-const url =
-  "mongodb+srv://admin:Pa$$word123@cluster0.d168r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const url = `mongodb+srv://admin:${process.env.MongoPassword}@cluster0.d168r.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const dbName = "myFirstDatabase";
 
 const saltRounds = 10;

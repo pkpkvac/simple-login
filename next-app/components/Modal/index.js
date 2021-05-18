@@ -6,12 +6,12 @@ const Modal = (props) => {
 
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD (PAY YOUR DEVS)</h3>
+      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
     </div>
   );
   const ErrorMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "red" }}>FAILED UPLOAD (PAY YOUR DEVS)</h3>
+      <h3 style={{ color: "red" }}>FAILED UPLOAD </h3>
       <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
       <br />
     </div>
