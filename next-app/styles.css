@@ -481,7 +481,8 @@ cite img {
 
 .section-slider {
   text-align: center;
-  padding-left: 25%;
+  display: flex;
+  justify-content: center;
 }
 
 /* ******************************************************** */
