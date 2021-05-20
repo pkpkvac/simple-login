@@ -91,7 +91,7 @@ const Upload = (props) => {
   return (
     <div className="Upload">
       <center>
-        <p>Upload a file</p>
+        <p>TEST</p>
 
         {/* <div>{JSON.stringify(props.prompt.label)}</div> */}
 
