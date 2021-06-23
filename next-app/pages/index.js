@@ -52,7 +52,7 @@ function Home() {
                 <img
                   src='/images/logo-circular.png'
                   alt='Storytree logo'
-                  class='logo'
+                  class='logo-lite'
                 />
 
                 <a
@@ -124,9 +124,6 @@ function Home() {
                         HOW IT WORKS
                       </Link>
                     </li>
-                    {/* <li>
-                      <a href='#'>Ideas</a>
-                    </li> */}
                     <li>
                       <a href='https://www.hereandvowstudio.com/book-meeting'>
                         Contact

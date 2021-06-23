@@ -1,18 +1,22 @@
-import React, { useState } from "react";
-import classes from "./Modal.module.css";
+import React from 'react';
+import classes from './Modal.module.css';
 
 const Modal = (props) => {
   let Display;
 
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+      <h3 style={{ color: 'green', textAlign: 'center', fontWeight: '600' }}>
+        SUCCESSFUL UPLOAD
+      </h3>
     </div>
   );
   const ErrorMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "red" }}>FAILED UPLOAD </h3>
-      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+      <h3 style={{ color: 'red', textAlign: 'center', fontWeight: '600' }}>
+        FAILED UPLOAD
+      </h3>
+      <span style={{ color: 'red', backgroundColor: 'black' }}>ERROR: </span>
       <br />
     </div>
   );
@@ -30,18 +34,18 @@ const Modal = (props) => {
   return (
     <div className={classes.modal} onClick={props.onCloseModal}>
       <div
-        className={classes["modal-content"]}
+        className={classes['modal-content']}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className={classes["modal-header"]}>
-          <h4 className={classes["modal-title"]}>
-            {props.success ? "SUCCESSFUL UPLOAD" : "DAMN"}
+        <div className={classes['modal-header']}>
+          <h4 className={classes['modal-title']}>
+            {props.success ? 'SUCCESSFUL UPLOAD' : 'DAMN'}
           </h4>
         </div>
-        <div className={classes["modal-body"]}>
+        <div className={classes['modal-body']}>
           <Display />
         </div>
-        <div className={classes["modal-footer"]}>
+        <div className={classes['modal-footer']}>
           {/* <button onClick={props.onCloseModal} className={classes["button"]}>
             Close
           </button> */}

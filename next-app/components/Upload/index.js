@@ -1,13 +1,6 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { makeStyles } from "@material-ui/core/styles";
-import CircularProgress from "@material-ui/core/CircularProgress";
-
-const useStyles = makeStyles((theme) => ({
-  button: {
-    margin: theme.spacing(1),
-  },
-}));
+import React, { useState } from 'react';
+import axios from 'axios';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Upload = (props) => {
   // change to function component
@@ -20,7 +13,7 @@ const Upload = (props) => {
 
   const handleChange = (ev) => {
     setSuccess(false);
-    setUrl("");
+    setUrl('');
     setfileSelected(true);
   };
 
@@ -28,11 +21,11 @@ const Upload = (props) => {
     setLoading(true);
     let file = uploadInput.files[0];
     // Split the filename to get the name and type
-    let fileParts = uploadInput.files[0].name.split(".");
+    let fileParts = uploadInput.files[0].name.split('.');
     let fileName = fileParts[0];
     let fileType = fileParts[1];
     axios
-      .post("/api/fileupload", {
+      .post('/api/fileupload', {
         fileName: fileName,
         fileType: fileType,
         weddingID: props.weddingID,
@@ -45,7 +38,7 @@ const Upload = (props) => {
 
         var options = {
           headers: {
-            "Content-Type": fileType,
+            'Content-Type': fileType,
           },
         };
         axios
@@ -73,32 +66,26 @@ const Upload = (props) => {
 
   const SuccessMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "green" }}>SUCCESSFUL UPLOAD</h3>
+      <h3 style={{ color: 'green' }}>SUCCESSFUL UPLOAD</h3>
       {/* <a href={url}>Access the file here</a> */}
       <br />
     </div>
   );
   const ErrorMessage = () => (
     <div style={{ padding: 50 }}>
-      <h3 style={{ color: "red" }}>FAILED UPLOAD</h3>
-      <span style={{ color: "red", backgroundColor: "black" }}>ERROR: </span>
+      <h3 style={{ color: 'red' }}>FAILED UPLOAD</h3>
+      <span style={{ color: 'red', backgroundColor: 'black' }}>ERROR: </span>
       <span>{errorMessage}</span>
       <br />
     </div>
   );
-  const classes = useStyles();
 
   return (
-    <div className="Upload">
+    <div className='Upload'>
       <center>
-        <p>TEST</p>
-
-        {/* <div>{JSON.stringify(props.prompt.label)}</div> */}
-
         <div>{loading ? <RenderSpinner /> : null}</div>
 
         <div>{success ? <SuccessMessage /> : null}</div>
-        {/* <div>{success ? { toggle } : null}</div> */}
 
         <div>{error ? <ErrorMessage /> : null}</div>
 
@@ -107,16 +94,16 @@ const Upload = (props) => {
           ref={(ref) => {
             uploadInput = ref;
           }}
-          type="file"
-          style={{ display: "inline", marginBottom: "25px" }}
+          type='file'
+          style={{ display: 'inline', marginBottom: '25px' }}
         />
 
         <br />
 
         <a
-          class="btn-upload"
+          class='btn-upload'
           onClick={handleUpload}
-          style={{ display: fileSelected ? "inline" : "none" }}
+          style={{ display: fileSelected ? 'inline' : 'none' }}
         >
           Upload
         </a>
