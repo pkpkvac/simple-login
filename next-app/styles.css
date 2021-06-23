@@ -336,6 +336,16 @@ header {
   align-items: flex-start;
 }
 
+.logo-lite {
+  margin-left: 20px;
+  margin-top: 20px;
+  height: 100px;
+  width: auto;
+  max-width: 150px;
+  float: left;
+  align-items: flex-start;
+}
+
 /* -------------------- VIDEO BOX -------------------- */
 
 .film__container {
@@ -1129,6 +1139,7 @@ GRID
 
   .section-slider {
     text-align: center;
+    padding: 0;
   }
   /* set the second element */
 }
