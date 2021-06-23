@@ -818,7 +818,6 @@ img {
  */
 
 button,
-input,
 optgroup,
 select,
 textarea {
@@ -833,6 +832,11 @@ textarea {
  * Show the overflow in IE.
  * 1. Show the overflow in Edge.
  */
+
+input {
+  margin-left: 20%;
+  width: 50%;
+}
 
 button,
 input {
@@ -1116,6 +1120,11 @@ GRID
 
   .span-1-of-2 img {
     content-visibility: hidden;
+  }
+
+  input {
+    margin-left: 10%;
+    width: 70%;
   }
 
   h3 {
