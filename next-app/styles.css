@@ -816,6 +816,7 @@ textarea {
   font-size: 100%; /* 1 */
   line-height: 1.15; /* 1 */
   margin: 0; /* 2 */
+  width: 100%;
 }
 
 /**
@@ -1124,6 +1125,10 @@ GRID
 
   .app-screen {
     content-visibility: hidden;
+  }
+
+  .section-slider {
+    text-align: center;
   }
   /* set the second element */
 }
