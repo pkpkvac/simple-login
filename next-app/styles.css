@@ -112,12 +112,17 @@ h5 {
   letter-spacing: 1px;
 }
 
+div .btn-login-scott {
+  margin: 40px 0px;
+}
+
 /* -------------------- Paragraphs -------------------- */
 
 .long-copy {
   line-height: 145%;
   width: 70%;
   margin-left: 15%;
+  text-align: center;
 }
 
 .box p {
@@ -233,15 +238,13 @@ h5 {
 }
 
 .main-nav {
-  float: right;
-  list-style: none;
-  margin-top: 50px;
-  align-items: flex-end;
+  display: flex;
+  justify-content: space-around;
 }
 
 .main-nav li {
   display: inline-block;
-  margin-left: 40px;
+  /* margin: 10px; */
 }
 
 /* select a items inside li */
@@ -327,8 +330,9 @@ header {
 .logo {
   height: 100px;
   width: auto;
+  max-width: 150px;
   float: left;
-  margin-top: 20px;
+  margin-top: 0px;
   align-items: flex-start;
 }
 
@@ -1081,6 +1085,16 @@ GRID
 
 /*  GO FULL WIDTH AT LESS THAN 480 PIXELS */
 
+@media only screen and (max-width: 1024px) {
+  .app-screen {
+    content-visibility: hidden;
+    display: none;
+  }
+  .span-1-of-2 {
+    width: 100%;
+  }
+}
+
 @media only screen and (max-width: 480px) {
   .span-2-of-2 {
     width: 100%;
@@ -1090,6 +1104,25 @@ GRID
   }
 
   .span-1-of-2 img {
+    content-visibility: hidden;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  .app-features {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .app-features p {
+    text-align: center;
+  }
+
+  .app-screen {
     content-visibility: hidden;
   }
   /* set the second element */

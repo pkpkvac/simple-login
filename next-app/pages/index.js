@@ -142,19 +142,26 @@ function Home() {
                 Share the stories <br /> that brought you here
               </h1>
 
-              <a class='btn btn-full' href='/login'>
-                Login
-              </a>
-              <Link className='Link' to='how-it-works' spy={true} smooth={true}>
-                <a class='btn btn-ghost' href='#'>
-                  Explain
+              <div class='row btn-login-scott'>
+                <a class='btn btn-full' href='/login'>
+                  Login
                 </a>
-              </Link>
+                <Link
+                  className='Link'
+                  to='how-it-works'
+                  spy={true}
+                  smooth={true}
+                >
+                  <a class='btn btn-ghost' href='#'>
+                    Explain
+                  </a>
+                </Link>
+              </div>
             </div>
           </header>
           <body>
             <section id='how-it-works' class='section-features'>
-              <div class='row'>
+              <div class='row '>
                 <h2>Share stories &mdash; Share memories</h2>
                 <p class='long-copy'>
                   Hello, we’d like to encourage you to share your funniest,
@@ -164,7 +171,7 @@ function Home() {
               </div>
 
               <div class='row'>
-                <div class='col span-1-of-4 box'>
+                <div class='col span-1-of-4 box app-features'>
                   <h3>Brainstorm a tale</h3>
                   <BiBrain color='#24a058' size='3em' />
                   <p>
@@ -172,7 +179,7 @@ function Home() {
                     you need inspiration, look at our Prompts section
                   </p>
                 </div>
-                <div class='col span-1-of-4 box'>
+                <div class='col span-1-of-4 box app-features'>
                   <h3>Record your story</h3>
                   <BiCameraMovie color='#24a058' size='3em' />
                   <p>
@@ -180,7 +187,7 @@ function Home() {
                     online service to connect directly to your phone
                   </p>
                 </div>
-                <div class='col span-1-of-4 box'>
+                <div class='col span-1-of-4 box app-features'>
                   <h3>Upload your story</h3>
                   <HiOutlineCloudUpload color='#24a058' size='3em' />
                   <p>
@@ -188,7 +195,7 @@ function Home() {
                     step. Feel free to attach photos related to the story
                   </p>
                 </div>
-                <div class='col span-1-of-4 box'>
+                <div class='col span-1-of-4 box app-features'>
                   <h3>Wait for it ...</h3>
                   <GiFairyWand color='#24a058' size='3em' />
                   <p>
