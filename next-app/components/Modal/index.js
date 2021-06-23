@@ -16,8 +16,6 @@ const Modal = (props) => {
       <h3 style={{ color: 'red', textAlign: 'center', fontWeight: '600' }}>
         FAILED UPLOAD
       </h3>
-      <span style={{ color: 'red', backgroundColor: 'black' }}>ERROR: </span>
-      <br />
     </div>
   );
 
@@ -39,7 +37,9 @@ const Modal = (props) => {
       >
         <div className={classes['modal-header']}>
           <h4 className={classes['modal-title']}>
-            {props.success ? 'SUCCESSFUL UPLOAD' : 'DAMN'}
+            {props.success
+              ? 'SUCCESSFUL UPLOAD'
+              : 'TELL MEHDI-O TO CALL HIS DEV'}
           </h4>
         </div>
         <div className={classes['modal-body']}>
