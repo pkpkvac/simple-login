@@ -84,7 +84,7 @@ h4 {
   font-size: 160%;
   word-spacing: 2px;
   text-align: center;
-  margin-bottom: 30px;
+  /* margin-bottom: 30px; */
   letter-spacing: 1px;
 }
 
@@ -302,6 +302,7 @@ div .btn-login-scott {
 .hero-text-box {
   position: absolute;
   width: 100%;
+  padding-left: 3rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
