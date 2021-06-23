@@ -302,7 +302,7 @@ div .btn-login-scott {
 .hero-text-box {
   position: absolute;
   width: 100%;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -1134,8 +1134,9 @@ GRID
     display: none;
   } */
 
-  .logo {
+  .span-1-of-2 img {
     content-visibility: hidden;
+    display: none;
   }
 
   input {

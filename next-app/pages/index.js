@@ -102,13 +102,13 @@ function Home() {
           <header>
             <nav>
               <div class='row box'>
-                {/* <div class='col span-1-of-2 box'>
+                <div class='col span-1-of-2 box'>
                   <img
                     src='/images/logo-circular.png'
                     alt='Storytree logo'
                     class='logo'
                   />
-                </div> */}
+                </div>
                 <div class='col span-1-of-2 box'>
                   <ul class='main-nav'>
                     <li>
