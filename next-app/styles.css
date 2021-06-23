@@ -1127,7 +1127,13 @@ GRID
     width: 100%;
   }
 
-  .span-1-of-2 img {
+  /* .span-1-of-2 img {
+    
+    content-visibility: hidden;
+    display: none;
+  } */
+
+  .logo {
     content-visibility: hidden;
   }
 
