@@ -35,13 +35,6 @@ function Home() {
     setShowModal(true);
   };
 
-  const slides = [
-    { title: ["I shouldn't tell this story at a wedding, but ..."] },
-    { title: ['Most embarassing story of the groom/bride I know'] },
-    { title: ['Funniest travel story'] },
-    { title: ['Funniest prank story'] },
-  ];
-
   const slides = [ { title: ["What’s your best 'epic fail' story?"] },
 { title: ["What’s your best 'ran for my life' story?"] },
 { title: ["What’s your best wardrobe malfunction story?"] },
@@ -74,7 +67,7 @@ function Home() {
 { title: ["What’s your best 'I almost died!' story?"] },
 { title: ["What’s your best cooking accident story?"] },
 { title: ["What’s your best job interview story?"] },
-{ title: ["What’s your best 'I passed the exam' story?"] },
+{ title: ["What’s your best 'I passed the exam' story?"] }]
 
   return (
     <div>
