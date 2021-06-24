@@ -497,11 +497,14 @@ cite img {
 
 /* -------------------- Slider -------------------- */
 
+.slider {
+  max-height:300px
+}
+
 .section-slider {
   text-align: center;
   padding-left: 20%;
   padding-right: 20%;
-  max-height: 475px
   
 }
 
