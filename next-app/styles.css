@@ -501,6 +501,8 @@ cite img {
   text-align: center;
   padding-left: 20%;
   padding-right: 20%;
+  max-height: 475px
+  
 }
 
 /* ******************************************************** */
